@@ -8,6 +8,7 @@
             Console.WriteLine("Tjo");
 
             Console.WriteLine("TEST");
+            Console.WriteLine("Test3");
         }
     }
 }
