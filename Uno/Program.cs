@@ -6,7 +6,15 @@ namespace Uno
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Han tar en nuuuuus");
+            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Tjo");
+
+            Console.WriteLine("TEST");
+            Console.WriteLine("Test3");
+
+            Console.WriteLine("Test5");
+
+
         }
     }
 }
