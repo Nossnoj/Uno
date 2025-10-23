@@ -8,9 +8,9 @@ namespace Uno
 {
     internal class ReverseEffect : ICardEffect
     {
-        public void AddEffect()
+        public void AddEffect(GameState state)
         {
-
+            state.ReverseDirection = !state.ReverseDirection;
         }
     }
 }
