@@ -8,9 +8,9 @@ namespace Uno
 {
     internal class SkipEffect : ICardEffect
     {
-        public void AddEffect()
+        public void AddEffect(GameState state)
         {
-
+            state.SkipNextPlayer = true;
         }
     }
 }

@@ -18,5 +18,11 @@ namespace Uno
             Symbol = symbol;
             Effect = effect;
         }
+
+        public bool CanPlay(UnoCard other)
+        {
+            //choosecolorcard och plus4card ska kunna spelas på alla kort
+            return true;
+        }
     }
 }

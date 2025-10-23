@@ -8,6 +8,6 @@ namespace Uno
 {
     internal interface ICardEffect
     {
-        void AddEffect();
+        void AddEffect(GameState state);
     }
 }

@@ -8,9 +8,6 @@ namespace Uno
 {
     internal class NoEffect : ICardEffect
     {
-        public void AddEffect()
-        {
-
-        }
+        public void AddEffect(GameState state) { }
     }
 }
