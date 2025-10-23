@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Uno;
 
 namespace Uno
 {
@@ -6,15 +7,13 @@ namespace Uno
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-            Console.WriteLine("Tjo");
-
-            Console.WriteLine("TEST");
-            Console.WriteLine("Test3");
-
-            Console.WriteLine("Test5");
-
-
+            var card = new NumberCard("red", "5");
+            var card1 = new SkipCard("blue");
+            var card2 = new ReverseCard("yellow");
+            var card3 = new PlusTwoCard("green");
+            var card4 = new PlusFourCard();
+            var card5 = new ChooseColorCard();
+            Console.WriteLine();
         }
     }
 }
