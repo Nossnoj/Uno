@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Uno
+{
+    internal class NumberCard : UnoCard
+    {
+        public NumberCard(string color, string number)
+            : base(color, number, new NoEffect()) { }
+    }
+}
