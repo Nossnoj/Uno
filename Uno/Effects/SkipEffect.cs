@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Uno
+namespace Uno.Effects
 {
-    internal class ChooseColorEffect : ICardEffect
+    internal class SkipEffect : ICardEffect
     {
-        public void AddEffect()
+        public void AddEffect(GameState state)
         {
-
+            state.SkipNextPlayer = true;
         }
     }
 }

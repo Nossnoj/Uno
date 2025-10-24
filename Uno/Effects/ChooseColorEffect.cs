@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Uno
+namespace Uno.Effects
 {
-    internal class ReverseEffect : ICardEffect
+    internal class ChooseColorEffect : ICardEffect
     {
         public void AddEffect(GameState state)
         {
-            state.ReverseDirection = !state.ReverseDirection;
+
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Uno
 {
     internal class GameState //controls the current state of the game - NOT the game itself. GameState stores the rules effects after each card is played
     {
-        public string CurrentColor { get; set; }
+        public string CurrentColor { get; set; } 
         public bool SkipNextPlayer { get; set; }
         public bool ReverseDirection { get; set; }
         public int CardsToDraw { get; set; }
