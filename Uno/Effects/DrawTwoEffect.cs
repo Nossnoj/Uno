@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Uno
+namespace Uno.Effects
 {
-    internal class SkipEffect : ICardEffect
+    internal class DrawTwoEffect : ICardEffect
     {
         public void AddEffect(GameState state)
         {
-            state.SkipNextPlayer = true;
+
         }
     }
 }

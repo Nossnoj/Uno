@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Uno
+namespace Uno.Effects
 {
-    internal class DrawTwoEffect : ICardEffect
+    internal class DrawFourEffect : ICardEffect
     {
-        public void AddEffect()
+        public void AddEffect(GameState state)
         {
 
         }

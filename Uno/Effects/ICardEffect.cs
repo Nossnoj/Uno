@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Uno
+namespace Uno.Effects
 {
-    internal class NoEffect : ICardEffect
+    internal interface ICardEffect
     {
-        public void AddEffect(GameState state) { }
+        void AddEffect(GameState state);
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Globalization;
 using Uno;
+using Uno.Cards;
+using Uno.Effects;
 
 namespace Uno
 {
