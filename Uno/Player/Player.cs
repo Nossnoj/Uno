@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Uno.Player;
 
-namespace Uno
+namespace Uno.Player
 {
-    internal abstract class PlayerFactory
+    internal class Player
     {
-
     }
 }
