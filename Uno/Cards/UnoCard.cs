@@ -20,10 +20,25 @@ namespace Uno.Cards
             Effect = effect;
         }
 
-        public bool CanPlay(UnoCard other)
+        public bool CanPlayOn(UnoCard other)
         {
-            //choosecolorcard och plus4card ska kunna spelas på alla kort
-            return true;
+            if(Color == "None") //dvs ifall ett kort antingen är +4 eller ChooseColorCard
+            {
+                return true;
+            }
+
+            return this.Color == other.Color || this.Symbol == other.Symbol;
         }
+
+        public void Play(GameState state)
+        {
+            if(Color != "None")
+            {
+                state.CurrentColor = Color;
+            }
+            Effect.AddEffect(state);
+        }
+
+        //här kan vi ha en ToString metod
     }
 }
