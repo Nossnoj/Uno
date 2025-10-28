@@ -8,7 +8,7 @@ using Uno.Player;
 
 namespace Uno.Player
 {
-    internal class Player
+    internal abstract class Player
     {
         private List<Cards.UnoCard> hand;
         public string Name { get; }
@@ -25,10 +25,10 @@ namespace Uno.Player
         {
             for (int i = 0; i < 7; i++)
             {
-                hand.Add(Deck.DrawCard());
+                hand.Add(Deck.drawCard());
             }
         }
-        private void DrawCard() => hand.Add(Deck.DrawCard());
+        private void DrawCard() => hand.Add(Deck.drawCard());
         
         private void PlayCard(Cards.UnoCard card)
         {

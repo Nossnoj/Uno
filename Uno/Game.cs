@@ -18,7 +18,7 @@ namespace Uno
         }
         private void StartGame()
         {
-           topCard = deck.DrawCard();
+           topCard = deck.drawCard();
         }
 
     }

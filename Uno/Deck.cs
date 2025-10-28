@@ -14,7 +14,7 @@ namespace Uno
         {
             cards = new List<UnoCard>();
         }
-        public UnoCard DrawCard()
+        public UnoCard drawCard()
         {
             if (cards.Count == 0)
             {
