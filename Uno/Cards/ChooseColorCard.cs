@@ -10,6 +10,6 @@ namespace Uno.Cards
     internal class ChooseColorCard : UnoCard
     {
         public ChooseColorCard()
-            : base("None", "Wild", new ChooseColorEffect()) { }
+            : base(UnoColor.None, "Wild", new ChooseColorEffect()) { }
     }
 }

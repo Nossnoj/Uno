@@ -9,7 +9,7 @@ namespace Uno.Cards
 {
     internal class NumberCard : UnoCard
     {
-        public NumberCard(string color, string number)
+        public NumberCard(UnoColor color, string number)
             : base(color, number, new NoEffect()) { }
     }
 }

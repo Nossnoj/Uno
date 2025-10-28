@@ -9,7 +9,7 @@ namespace Uno.Cards
 {
     internal class SkipCard : UnoCard
     {
-        public SkipCard(string color)
+        public SkipCard(UnoColor color)
             : base(color, "Skip", new SkipEffect()) { }
     }
 }

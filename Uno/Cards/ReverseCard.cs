@@ -9,7 +9,7 @@ namespace Uno.Cards
 {
     internal class ReverseCard : UnoCard
     {
-        public ReverseCard(string color)
+        public ReverseCard(UnoColor color)
             : base(color, "Reverse", new ReverseEffect()) { }
     }
 }

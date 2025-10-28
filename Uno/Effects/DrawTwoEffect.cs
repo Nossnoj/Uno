@@ -10,7 +10,7 @@ namespace Uno.Effects
     {
         public void AddEffect(GameState state)
         {
-
+            state.CardsToDraw += 2;
         }
     }
 }

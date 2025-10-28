@@ -9,7 +9,7 @@ namespace Uno.Cards
 {
     internal class PlusTwoCard : UnoCard
     {
-        public PlusTwoCard(string color)
+        public PlusTwoCard(UnoColor color)
             : base(color, "+2", new DrawTwoEffect()) { }
     }
 }
