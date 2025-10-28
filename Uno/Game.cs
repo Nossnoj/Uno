@@ -19,6 +19,7 @@ namespace Uno
         private void StartGame()
         {
            topCard = deck.drawCard();
+           topCard.Play(state);
         }
 
     }

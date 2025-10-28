@@ -14,11 +14,12 @@ namespace Uno.Player
         public PlayerHand Hand { get; }
         public string Name { get; }
         private Deck Deck { get; }
+        protected IStrategy strategy { get; }
 
-        public Player(string name, Deck deck)
+        public Player(string name, IStrategy strategy)
         {
             Name = name;
-            Deck = deck;
+            this.strategy = strategy;
             Hand = new PlayerHand();
             makeHand();
         }
@@ -31,12 +32,7 @@ namespace Uno.Player
             }
         }
         private void DrawCard() => Hand.AddCard(Deck.drawCard());
-        
-        private void PlayCard(UnoCard card)
-        {
-            // Logik för att uppdatera spelets tillstånd med det spelade kortet
-            // Eventuellt ha logik för att välja vilket kort som ska spelas
-            Hand.RemoveCard(card);
-        }
-    }
+
+        public abstract void playCard(UnoCard card);
 }
+

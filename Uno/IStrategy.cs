@@ -9,6 +9,6 @@ namespace Uno
 {
     internal interface IStrategy
     {
-        UnoCard cardToPlay(List<UnoCard> hand, UnoCard topCard);
+        UnoCard cardToPlay(PlayerHand hand, UnoCard topCard);
     }
 }
