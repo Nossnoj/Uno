@@ -9,11 +9,11 @@ namespace Uno.Cards
 {
     internal abstract class UnoCard
     {
-        protected string Color { get; }
+        protected UnoColor Color { get; }
         public string Symbol { get; }
         private ICardEffect Effect;
 
-        protected UnoCard(string color, string symbol, ICardEffect effect)
+        protected UnoCard(UnoColor color, string symbol, ICardEffect effect)
         {
             Color = color;
             Symbol = symbol;
@@ -22,7 +22,7 @@ namespace Uno.Cards
 
         public bool CanPlayOn(UnoCard other)
         {
-            if(Color == "None") //dvs ifall ett kort antingen är +4 eller ChooseColorCard
+            if(Color == UnoColor.None) //dvs ifall ett kort antingen är +4 eller ChooseColorCard
             {
                 return true;
             }
@@ -32,7 +32,7 @@ namespace Uno.Cards
 
         public void Play(GameState state)
         {
-            if(Color != "None")
+            if(Color != UnoColor.None)
             {
                 state.CurrentColor = Color;
             }

@@ -10,6 +10,6 @@ namespace Uno.Cards
     internal class PlusFourCard : UnoCard
     {
         public PlusFourCard()
-            : base("None", "Wild+4", new DrawFourEffect()) { }
+            : base(UnoColor.None, "Wild+4", new DrawFourEffect()) { }
     }
 }

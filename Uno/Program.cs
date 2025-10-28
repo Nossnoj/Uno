@@ -18,14 +18,14 @@ namespace Uno
             var card5 = new ChooseColorCard();
             */
 
-            var testCard1 = new NumberCard("red", "1");
-            var testCard2 = new NumberCard("Red", "6");
-            var testCard3 = new NumberCard("blue", "1");
-            var testCard4 = new NumberCard("green", "2");
-            var testCard5 = new ReverseCard("green");
-            var testCard6 = new ReverseCard("blue");
+            var testCard1 = new NumberCard(UnoColor.Red, "1");
+            var testCard2 = new NumberCard(UnoColor.Red, "6");
+            var testCard3 = new NumberCard(UnoColor.Blue, "1");
+            var testCard4 = new NumberCard(UnoColor.Green, "2");
+            var testCard5 = new ReverseCard(UnoColor.Green);
+            var testCard6 = new ReverseCard(UnoColor.Blue);
             var testCard7 = new PlusFourCard();
-            var testCard8 = new SkipCard("red");
+            var testCard8 = new SkipCard(UnoColor.Red);
             var testCard9 = new ChooseColorCard();
 
             bool result1 = testCard2.CanPlayOn(testCard1); //BLIR FALSE EFTERSOM red != Red
@@ -35,7 +35,7 @@ namespace Uno
             bool result5 = testCard6.CanPlayOn(testCard5);
 
             var state = new GameState();
-            testCard8.Play(state);
+            testCard7.Play(state);
             Console.WriteLine();
         }
     }

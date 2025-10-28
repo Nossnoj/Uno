@@ -10,15 +10,13 @@ namespace Uno.Effects
     {
         public void AddEffect(GameState state)
         {
-            string[] allowedColors = { "Red", "Blue", "Green", "Yellow" };
-
             while (true)
             {
                 Console.Write("Choose a color: ");
                 string color = Console.ReadLine().Trim();
-                if (allowedColors.Contains(color, StringComparer.OrdinalIgnoreCase))
+                if(Enum.TryParse<UnoColor>(color, true, out var chosenColor) && chosenColor != UnoColor.None)
                 {
-                    state.CurrentColor = color;
+                    state.CurrentColor = chosenColor;
                     break;
                 }
                 Console.WriteLine("Invalid color! Try again!");
