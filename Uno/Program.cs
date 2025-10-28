@@ -36,7 +36,15 @@ namespace Uno
 
             var state = new GameState();
             testCard7.Play(state);
-            Console.WriteLine();
+            Console.WriteLine("Linus Sarling" +
+                "\r\n" +
+                "Icke-darling" +
+                "\r\n" +
+                "Fruktskål och broccoli i håret" +
+                "\r\n" +
+                "Han tar en nuuus" +
+                "\r\n" +
+                "Bara en nuuus");
         }
     }
 }

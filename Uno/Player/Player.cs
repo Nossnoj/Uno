@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,14 +11,15 @@ namespace Uno.Player
 {
     internal abstract class Player
     {
-        private List<Cards.UnoCard> hand;
+        public PlayerHand Hand { get; }
         public string Name { get; }
         private Deck Deck { get; }
 
         public Player(string name, Deck deck)
         {
             Name = name;
-            hand = new List<Cards.UnoCard>();
+            Deck = deck;
+            Hand = new PlayerHand();
             makeHand();
         }
 
@@ -25,16 +27,16 @@ namespace Uno.Player
         {
             for (int i = 0; i < 7; i++)
             {
-                hand.Add(Deck.drawCard());
+                Hand.AddCard(Deck.drawCard());
             }
         }
-        private void DrawCard() => hand.Add(Deck.drawCard());
+        private void DrawCard() => Hand.AddCard(Deck.drawCard());
         
-        private void PlayCard(Cards.UnoCard card)
+        private void PlayCard(UnoCard card)
         {
             // Logik för att uppdatera spelets tillstånd med det spelade kortet
             // Eventuellt ha logik för att välja vilket kort som ska spelas
-            hand.Remove(card);
+            Hand.RemoveCard(card);
         }
     }
 }

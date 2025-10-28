@@ -39,6 +39,7 @@ namespace Uno.Cards
             Effect.AddEffect(state);
         }
 
-        //här kan vi ha en ToString metod
+        public override string ToString()
+            => $"{Color} {Symbol}";
     }
 }
