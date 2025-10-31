@@ -35,5 +35,6 @@ namespace Uno.Players
         private void DrawCard() => Hand.AddCard(Deck.drawCard());
 
         public abstract void playCard(UnoCard card);
+    }
 }
 

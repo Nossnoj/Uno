@@ -11,10 +11,6 @@ namespace Uno
 {
     internal class Game
     {
-        GameState state = new GameState();
-        Deck deck;
-        private List<Player> playerList = new();
-        private UnoCard? topCard;
         private GameState state = new GameState();
         private Deck deck;
         private List<Player> playerList = new();
@@ -28,7 +24,8 @@ namespace Uno
             Player Player2 = aiPlayerFactory.createPlayer("AI 1", new NormalStrategy(), deck);
             Player Player3 = aiPlayerFactory.createPlayer("AI 2", new NormalStrategy(), deck);
             Player Player4 = aiPlayerFactory.createPlayer("AI 3", new NormalStrategy(), deck);
-            
+            StartGame();
+
         }
         public void StartGame()
         {
@@ -36,6 +33,32 @@ namespace Uno
             topCard.Play(state);
 
             Console.WriteLine($"{topCard}");
+            
+        }
+        public void Render()
+        {
+            UnoColor color = state.CurrentColor;
+            switch (color)
+            {   
+                case UnoColor.Red:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+                case UnoColor.Blue:
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    break;
+                case UnoColor.Green:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    break;
+                case UnoColor.Yellow:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    break;
+                default:
+                    Console.ResetColor();
+                    break;
+            }
+
+            Console.WriteLine($"Top card: {topCard}");
+            Console.WriteLine($"Current color: {state.CurrentColor}");
         }
         
 

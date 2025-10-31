@@ -9,6 +9,9 @@ namespace Uno
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to Uno!");
+            var game = new Game();
+            game.StartGame();
             /*
             var card = new NumberCard("red", "5");
             var card1 = new SkipCard("blue");
@@ -16,7 +19,7 @@ namespace Uno
             var card3 = new PlusTwoCard("green");
             var card4 = new PlusFourCard();
             var card5 = new ChooseColorCard();
-            */
+            
 
             var testCard1 = new NumberCard(UnoColor.Red, "1");
             var testCard2 = new NumberCard(UnoColor.Red, "6");
@@ -44,10 +47,7 @@ namespace Uno
                 "\r\n" +
                 "Han tar en nuuus" +
                 "\r\n" +
-                "Bara en nuuus");
-
-            var game = new Game();
-            game.StartGame();
+                "Bara en nuuus"); */
         }
     }
 }
