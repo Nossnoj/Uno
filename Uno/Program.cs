@@ -45,6 +45,9 @@ namespace Uno
                 "Han tar en nuuus" +
                 "\r\n" +
                 "Bara en nuuus");
+
+            var game = new Game();
+            game.StartGame();
         }
     }
 }

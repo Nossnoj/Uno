@@ -8,6 +8,9 @@ using Uno.Cards;
 
 namespace Uno
 {
+    //Krav 5
+    //1: Enumerable & Enumerator
+    //2: 
     internal class PlayerHand : IEnumerable<UnoCard>
     {
         private List<UnoCard> cards = new();
