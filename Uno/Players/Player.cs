@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uno.Cards;
-using Uno.Player;
+using Uno.Players;
 
-namespace Uno.Player
+namespace Uno.Players
 {
     internal abstract class Player
     {
@@ -16,7 +16,7 @@ namespace Uno.Player
         private Deck Deck { get; }
         protected IStrategy strategy { get; }
 
-        public Player(string name, IStrategy strategy)
+        public Player(string name, IStrategy strategy, Deck deck)
         {
             Name = name;
             this.strategy = strategy;
