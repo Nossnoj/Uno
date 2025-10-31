@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Uno.Players;
 using Uno.Cards;
+
+namespace Uno.Players
 {
     internal class AiPlayer : Players
     {
-        public AiPlayer(string name, IStrategy strategy) : base(name, strategy) { }
+        public AiPlayer(string name, IStrategy strategy, Deck deck) : base(name, strategy, deck) { }
         public override void playCard(UnoCard card)
         {
 
