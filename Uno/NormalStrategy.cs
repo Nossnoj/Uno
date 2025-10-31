@@ -9,7 +9,7 @@ namespace Uno
 {
     internal class NormalStrategy : IStrategy
     {
-        public UnoCard cardToPlay(List<UnoCard> hand, UnoCard topCard)
+        public UnoCard cardToPlay(PlayerHand hand, UnoCard topCard)
         {
             return null;
         }
