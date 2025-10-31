@@ -4,21 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uno.Cards;
+using Uno.Players;
 
 namespace Uno
 {
     internal class Game
     {
-        GameState state = new GameState();
-        Deck deck;
-        UnoCard topCard;
+        private GameState state = new GameState();
+        private Deck deck;
+        private List<Player> playerList = new();
+        private UnoCard? topCard; //null innan spelet börjar
         public Game()
         {
             deck = new Deck();
+
+            //skapa spelare här
         }
-        private void StartGame()
+        public void StartGame()
         {
-           topCard = deck.drawCard();
+            topCard = deck.drawCard();
+            topCard.Play(state);
+
+            Console.WriteLine($"{topCard}");
         }
 
     }

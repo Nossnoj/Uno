@@ -7,6 +7,11 @@ using Uno.Effects;
 
 namespace Uno.Cards
 {
+    //KRAV 3:
+    //1: Bridge Pattern
+    //2: Vi använder Bridge Pattern genom att separera kortets abstraktion (UnoCard) från dess effekt (ICardEffect).
+    //   Varje kort har en färg och symbol (abstraktion) men kan kopplas till olika effekter (konkreta implementationer).
+    //3: Vi gör det för att det ska bli möjligt att skapa nya kort och effekter oberoende av varandra.
     internal abstract class UnoCard
     {
         protected UnoColor Color { get; }

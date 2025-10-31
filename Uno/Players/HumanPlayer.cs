@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Uno.Player;
+using Uno.Players;
 
-namespace Uno.Player
+namespace Uno.Players
 {
     internal class HumanPlayer
     {
