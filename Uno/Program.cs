@@ -37,6 +37,21 @@ namespace Uno
            bool result4 = testCard5.CanPlayOn(testCard4);
            bool result5 = testCard6.CanPlayOn(testCard5);
 
+            
+            var state = new GameState();
+            Game game = new Game();
+            testCard1.Play(state);
+            game.NextPlayer();
+            testCard2.Play(state);
+            game.NextPlayer();
+            testCard5.Play(state);
+            game.NextPlayer();
+            testCard10.Play(state);
+            game.NextPlayer();
+
+            
+
+            Console.WriteLine();
            var state = new GameState();
            testCard7.Play(state);
            Console.WriteLine("Linus Sarling" +

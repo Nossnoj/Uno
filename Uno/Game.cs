@@ -15,6 +15,8 @@ namespace Uno
         private Deck deck;
         private List<Player> playerList = new();
         private UnoCard? topCard; //null innan spelet börjar
+        private int currentPlayerIndex = 0;
+        private int direction = 1;
         public Game()
         {
             deck = new Deck();
@@ -71,6 +73,35 @@ namespace Uno
             }
         }
 
+        public void Turns()
+        {
+            while (true)
+            {
+                var currentPlayer = playerList[currentPlayerIndex];
+                Console.WriteLine($"{currentPlayer.Name}'s turn!");
 
+
+            }
+
+            //kalla på NextPlayer
+        }
+
+        public void NextPlayer()
+        {
+            if (state.ReverseDirection)
+                direction *= -1;
+
+            if (state.SkipNextPlayer)
+            {
+                currentPlayerIndex = (currentPlayerIndex + 2 * direction + playerList.Count) % playerList.Count;
+            }
+            else
+            {
+                currentPlayerIndex = (currentPlayerIndex + direction + playerList.Count) % playerList.Count;
+            }
+
+            state.ReverseDirection = false;
+            state.SkipNextPlayer = false;
+        }
     }
 }
