@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Uno.Cards;
@@ -17,6 +18,7 @@ namespace Uno
         private UnoCard? topCard; //null innan spelet börjar
         private int currentPlayerIndex = 0;
         private int direction = 1;
+        public Render render = new Render();
         public Game()
         {
             deck = new Deck();
@@ -35,12 +37,14 @@ namespace Uno
             topCard = deck.drawCard();
             topCard.Play(state);
             UnoColor color = state.CurrentColor;
-            RenderColor(color);
-            Console.WriteLine($"Top card: {topCard}");
-            RenderHand();
+            Console.Write($"Top card:");
+            render.RenderColor(color);
+            Console.WriteLine($" {topCard}");
+            //render.RenderHand(playerList, state);
+            Turns();
 
         }
-        public void RenderHand()
+        /*public void RenderHand()
         {
             var player = playerList[0];
             foreach (var card in player.Hand)
@@ -71,7 +75,7 @@ namespace Uno
                     break;
                 //lägg till att göra regnbågsfärg för wildcards
             }
-        }
+        }*/
 
         public void Turns()
         {
@@ -79,11 +83,12 @@ namespace Uno
             {
                 var currentPlayer = playerList[currentPlayerIndex];
                 Console.WriteLine($"{currentPlayer.Name}'s turn!");
-
-
+                var chosenCard = currentPlayer.playCard(currentPlayer.Hand, topCard);
+                topCard = chosenCard;
+                topCard.Play(state);
+                NextPlayer();
+                //kalla på NextPlayer på rätt sätt, detta är enbart en temporär lösning
             }
-
-            //kalla på NextPlayer
         }
 
         public void NextPlayer()
