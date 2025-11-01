@@ -12,13 +12,7 @@ namespace Uno
             Console.WriteLine("Welcome to Uno!");
             var game = new Game();
            //game.StartGame();
-           /*
-           var card = new NumberCard("red", "5");
-           var card1 = new SkipCard("blue");
-           var card2 = new ReverseCard("yellow");
-           var card3 = new PlusTwoCard("green");
-           var card4 = new PlusFourCard();
-           var card5 = new ChooseColorCard();
+           
 
 
            var testCard1 = new NumberCard(UnoColor.Red, "1");
@@ -39,17 +33,16 @@ namespace Uno
 
             
             var state = new GameState();
-            Game game = new Game();
             testCard1.Play(state);
             game.NextPlayer();
             testCard2.Play(state);
             game.NextPlayer();
             testCard5.Play(state);
             game.NextPlayer();
-            testCard10.Play(state);
-            game.NextPlayer();
 
-            
+            Console.WriteLine();
+
+            /*
 
             Console.WriteLine();
            var state = new GameState();

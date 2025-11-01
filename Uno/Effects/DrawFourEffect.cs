@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Uno.Cards;
 
 namespace Uno.Effects
 {
-    internal class DrawFourEffect : ICardEffect //duplicerad problem?
+    internal class DrawFourEffect : ICardEffect<PlusFourCard>
     {
-        public void AddEffect(GameState state)
+        public void AddEffect(PlusFourCard card, GameState state)
         {
             state.CardsToDraw += 4;
             while (true)

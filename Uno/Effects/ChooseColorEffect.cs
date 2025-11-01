@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Uno.Cards;
 
 namespace Uno.Effects
 {
-    internal class ChooseColorEffect : ICardEffect //duplicerad problem?
+    internal class ChooseColorEffect : ICardEffect<ChooseColorCard>
     {
-        public void AddEffect(GameState state)
+        public void AddEffect(ChooseColorCard card, GameState state)
         {
             while (true)
             {

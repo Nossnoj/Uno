@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Uno.Cards;
 
 namespace Uno.Effects
 {
-    internal class NoEffect : ICardEffect
+    internal class NoEffect : ICardEffect<NumberCard>
     {
-        public void AddEffect(GameState state) { }
+        public void AddEffect(NumberCard card, GameState state) { }
     }
 }
