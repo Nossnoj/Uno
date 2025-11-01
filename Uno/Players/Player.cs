@@ -15,6 +15,7 @@ namespace Uno.Players
         public string Name { get; }
         public Deck Deck { get; }
         protected IStrategy strategy { get; }
+        public bool HasCalledUno { get; set; }
 
         public Player(string name, IStrategy strategy, Deck deck)
         {
@@ -32,6 +33,21 @@ namespace Uno.Players
                 Hand.AddCard(Deck.drawCard());
             }
         }
+
+        public void CallUno()
+        {
+            if(Hand.Cards.Count == 1)
+            {
+                HasCalledUno = true;
+                Console.WriteLine($"{Name} calls UNO!");
+            }
+            else
+            {
+                Console.WriteLine("You can't call UNO right now!");
+            }
+        }
+
+        public void ResetUnoCall() => HasCalledUno = false;
         private void DrawCard() => Hand.AddCard(Deck.drawCard());
 
         public abstract UnoCard playCard(PlayerHand hand, UnoCard topCard);

@@ -14,7 +14,7 @@ namespace Uno
     internal class PlayerHand : IEnumerable<UnoCard>
     {
         private List<UnoCard> cards = new();
-        public IReadOnlyList<UnoCard> Cards => cards;
+        public IReadOnlyList<UnoCard> Cards => cards; //vad är skillnaden på Cards och cards?
 
         public void AddCard(UnoCard card) => cards.Add(card);
         public void RemoveCard(UnoCard card) => cards.Remove(card);

@@ -13,7 +13,7 @@ namespace Uno
     {  
         public void RenderHand(PlayerHand hand)
         {
-            int i = 0;
+            int i = 1;
             foreach (var card in hand)
             {
                 RenderColor(card.color);

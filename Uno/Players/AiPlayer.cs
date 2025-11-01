@@ -9,7 +9,7 @@ using Uno.Players;
 
 namespace Uno.Players
 {
-    internal class AiPlayer : Player
+    internal class AiPlayer : Player 
     {
         public AiPlayer(string name, IStrategy strategy, Deck deck) : base(name, strategy, deck) { }
         public override UnoCard playCard(PlayerHand hand, UnoCard topCard)
@@ -31,5 +31,5 @@ namespace Uno.Players
                 return playCard(hand, topCard);
             }
         }
-    }
+    } //ska automatiskt säga UNO vid 1 kort
 }
