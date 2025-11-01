@@ -14,6 +14,7 @@ namespace Uno
         public Deck()
         {
             cards = new List<UnoCard>();
+            discard = new List<UnoCard>();
             populateDeck();
         }
 

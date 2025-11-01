@@ -13,7 +13,7 @@ namespace Uno.Players
     {
         public PlayerHand Hand { get; }
         public string Name { get; }
-        private Deck Deck { get; }
+        public Deck Deck { get; }
         protected IStrategy strategy { get; }
 
         public Player(string name, IStrategy strategy, Deck deck)
@@ -34,7 +34,7 @@ namespace Uno.Players
         }
         private void DrawCard() => Hand.AddCard(Deck.drawCard());
 
-        public abstract void playCard(UnoCard card);
+        public abstract UnoCard playCard(PlayerHand hand, UnoCard topCard);
     }
 }
 
