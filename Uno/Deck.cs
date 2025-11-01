@@ -14,6 +14,37 @@ namespace Uno
         public Deck()
         {
             cards = new List<UnoCard>();
+            populateDeck();
+        }
+
+        private void populateDeck()
+        {
+            string[] numberSymbols = { "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+            UnoColor[] colors = { UnoColor.Red, UnoColor.Blue, UnoColor.Green, UnoColor.Yellow };
+            foreach(var color in colors)
+            {
+                //Lägger till nummerkort
+                foreach(var symbol in numberSymbols)
+                {
+                    for(int i = 0; i < 2; i++)
+                        cards.Add(new NumberCard(color, symbol));
+                    
+                } 
+                cards.Add(new NumberCard(color, "0"));
+                for (int i = 0; i < 2; i++)
+                {
+                    cards.Add(new SkipCard(color));
+                    cards.Add(new ReverseCard(color));
+                    cards.Add(new PlusTwoCard(color));
+                }
+                
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                cards.Add(new ChooseColorCard());
+                cards.Add(new PlusFourCard());
+            }
+            Shuffle(cards);
         }
         public UnoCard drawCard()
         {

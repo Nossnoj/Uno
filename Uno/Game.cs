@@ -24,6 +24,7 @@ namespace Uno
             Player Player2 = aiPlayerFactory.createPlayer("AI 1", new NormalStrategy(), deck);
             Player Player3 = aiPlayerFactory.createPlayer("AI 2", new NormalStrategy(), deck);
             Player Player4 = aiPlayerFactory.createPlayer("AI 3", new NormalStrategy(), deck);
+            playerList.AddRange(new[] { Player1, Player2, Player3, Player4 });
             StartGame();
 
         }
@@ -31,15 +32,26 @@ namespace Uno
         {
             topCard = deck.drawCard();
             topCard.Play(state);
-
-            Console.WriteLine($"{topCard}");
-            
-        }
-        public void Render()
-        {
             UnoColor color = state.CurrentColor;
+            RenderColor(color);
+            Console.WriteLine($"Top card: {topCard}");
+            RenderHand();
+
+        }
+        public void RenderHand()
+        {
+            var player = playerList[0];
+            foreach (var card in player.Hand)
+            {
+                RenderColor(card.color);
+                Console.Write($"{card}, ");
+            }
+            UnoColor color = state.CurrentColor;
+        }
+        public void RenderColor(UnoColor color)
+        {
             switch (color)
-            {   
+            {
                 case UnoColor.Red:
                     Console.ForegroundColor = ConsoleColor.Red;
                     break;
@@ -55,12 +67,10 @@ namespace Uno
                 default:
                     Console.ResetColor();
                     break;
+                //lägg till att göra regnbågsfärg för wildcards
             }
-
-            Console.WriteLine($"Top card: {topCard}");
-            Console.WriteLine($"Current color: {state.CurrentColor}");
         }
-        
+
 
     }
 }

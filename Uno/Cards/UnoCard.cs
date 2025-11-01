@@ -15,6 +15,7 @@ namespace Uno.Cards
     internal abstract class UnoCard
     {
         protected UnoColor Color { get; }
+        public UnoColor color => Color;
         public string Symbol { get; }
         private ICardEffect Effect;
 
@@ -45,6 +46,6 @@ namespace Uno.Cards
         }
 
         public override string ToString()
-            => $"{Color} {Symbol}";
+            => $"{Symbol}";
     }
 }

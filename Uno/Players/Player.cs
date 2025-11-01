@@ -21,7 +21,7 @@ namespace Uno.Players
             Name = name;
             this.strategy = strategy;
             Hand = new PlayerHand();
-            this.Deck = Deck;
+            this.Deck = deck;
             makeHand();
         }
 
