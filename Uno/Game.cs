@@ -14,11 +14,9 @@ namespace Uno
         GameState state = new GameState();
         Deck deck;
         private List<Player> playerList = new();
-        private UnoCard? topCard;
-        private GameState state = new GameState();
-        private Deck deck;
-        private List<Player> playerList = new();
         private UnoCard? topCard; //null innan spelet börjar
+        private int currentPlayerIndex = 0;
+        private int direction = 1;
         public Game()
         {
             deck = new Deck();
@@ -28,7 +26,7 @@ namespace Uno
             Player Player2 = aiPlayerFactory.createPlayer("AI 1", new NormalStrategy(), deck);
             Player Player3 = aiPlayerFactory.createPlayer("AI 2", new NormalStrategy(), deck);
             Player Player4 = aiPlayerFactory.createPlayer("AI 3", new NormalStrategy(), deck);
-            
+            playerList.AddRange(new[] { Player1, Player2, Player3, Player4});
         }
         public void StartGame()
         {
@@ -37,7 +35,36 @@ namespace Uno
 
             Console.WriteLine($"{topCard}");
         }
-        
 
+        public void Turns()
+        {
+            while (true)
+            {
+                var currentPlayer = playerList[currentPlayerIndex];
+                Console.WriteLine($"{currentPlayer.Name}'s turn!");
+
+
+            }
+
+            //kalla på NextPlayer
+        }
+
+        public void NextPlayer()
+        {
+            if (state.ReverseDirection)
+                direction *= -1;
+
+            if (state.SkipNextPlayer)
+            {
+                currentPlayerIndex = (currentPlayerIndex + 2 * direction + playerList.Count) % playerList.Count;
+            }
+            else
+            {
+                currentPlayerIndex = (currentPlayerIndex + direction + playerList.Count) % playerList.Count;
+            }
+
+            state.ReverseDirection = false;
+            state.SkipNextPlayer = false;
+        }
     }
 }

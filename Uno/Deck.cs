@@ -25,7 +25,7 @@ namespace Uno
             }
             UnoCard drawnCard = cards[0];
             cards.RemoveAt(0);
-            //discard.Add(drawnCard);
+            discard.Add(drawnCard);
             return drawnCard;
         }
         public void Shuffle(List<UnoCard> deck)
