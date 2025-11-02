@@ -11,9 +11,10 @@ namespace Uno.Players
 {
     internal class HumanPlayer : Player
     {
-        public HumanPlayer(string name, IStrategy strategy, Deck deck) : base(name, strategy, deck) { }
+        public HumanPlayer(string name, IStrategy strategy, Deck deck, GameState state) : base(name, strategy, deck, state) { }
         public override UnoCard playCard(PlayerHand hand, UnoCard topCard)
         {
+            var state = base.state;
             string name = base.Name;
             var deck = base.Deck;
             Render render = new Render();
@@ -41,9 +42,12 @@ namespace Uno.Players
 
                 hand.RemoveCard(chosenCard);
                 deck.discard.Add(chosenCard);
-                Console.WriteLine($"{name} played {chosenCard}");
+                Console.Write($"{name} played ");
+                render.RenderColor(chosenCard.color);
+                Console.WriteLine($"{chosenCard}");
+                Console.ForegroundColor = ConsoleColor.White;
 
-                if(hand.Cards.Count == 1 && !HasCalledUno)
+                if (hand.Cards.Count == 1 && !HasCalledUno)
                 {
                     string unoCall = Console.ReadLine().Trim().ToLower();
 
@@ -61,6 +65,19 @@ namespace Uno.Players
                 }
 
                 return chosenCard;
+                    
+                    
+                }
+                else
+                {
+                    Console.WriteLine("You can't play that card! Try again.");
+                    return playCard(hand, topCard);
+                }
+            }
+            else if (position.ToLower() == "d")
+            {
+                base.DrawCard();
+                return playCard(hand, topCard);
             }
             else
             {

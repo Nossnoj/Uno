@@ -16,13 +16,15 @@ namespace Uno.Players
         public Deck Deck { get; }
         protected IStrategy strategy { get; }
         public bool HasCalledUno { get; set; }
+        public GameState state;    
 
-        public Player(string name, IStrategy strategy, Deck deck)
+        public Player(string name, IStrategy strategy, Deck deck, GameState state)
         {
             Name = name;
             this.strategy = strategy;
             Hand = new PlayerHand();
             this.Deck = deck;
+            this.state = state;
             makeHand();
         }
 

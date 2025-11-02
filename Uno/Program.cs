@@ -14,7 +14,7 @@ namespace Uno
            //game.StartGame();
            
 
-
+/*
            var testCard1 = new NumberCard(UnoColor.Red, "1");
            var testCard2 = new NumberCard(UnoColor.Red, "6");
            var testCard3 = new NumberCard(UnoColor.Blue, "1");
