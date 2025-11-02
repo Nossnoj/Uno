@@ -70,6 +70,11 @@ namespace Uno.Players
             if (position.ToLower() == "d")
             {
                 base.DrawCard();
+                if(drawCount == 3)
+                {
+                    Console.WriteLine($"{name} drew 3 cards but coult not play. Turn ends!");
+                    return null;
+                }
                 Console.WriteLine($"{name} drew a card!");
                 return playCard(hand, tempTopCard);
             }

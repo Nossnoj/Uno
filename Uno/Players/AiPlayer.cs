@@ -45,29 +45,31 @@ namespace Uno.Players
                     return null;
                 }
             }
-            var chosenCard = strategy.cardToPlay(hand, tempTopCard);
-            if (chosenCard != null)
+            while(drawCount < 3)
             {
-                hand.RemoveCard(chosenCard);
-                Deck.discard.Add(chosenCard);
-                Console.Write($"{Name} played ");
-                render.RenderColor(chosenCard.color);
-                Console.WriteLine($"{chosenCard}");
-                Console.ForegroundColor = ConsoleColor.White;
+                var chosenCard = strategy.cardToPlay(hand, tempTopCard);
 
-                if(hand.Cards.Count == 1 && !HasCalledUno)
+                if (chosenCard != null)
                 {
-                    CallUno();
-                }
+                    hand.RemoveCard(chosenCard);
+                    Deck.discard.Add(chosenCard);
+                    Console.Write($"{Name} played ");
+                    render.RenderColor(chosenCard.color);
+                    Console.WriteLine($"{chosenCard}");
+                    Console.ForegroundColor = ConsoleColor.White;
 
-                return chosenCard;
-            }
-            else
-            {
+                    if (hand.Cards.Count == 1 && !HasCalledUno)
+                    {
+                        CallUno();
+                    }
+
+                    return chosenCard;
+                }
                 DrawCard();
-                ResetUnoCall();
-                return playCard(hand, topCard);
             }
+            ResetUnoCall();
+            Console.WriteLine($"{Name} drew 3 cards but could not play!");
+            return null;
         }
     }
 }

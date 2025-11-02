@@ -51,7 +51,7 @@ namespace Uno
         {
             while (true)
             {
-                Console.Clear();
+                //Console.Clear();
                 UnoColor color = state.CurrentColor;
                 Console.Write($"Top card:");
                 render.RenderColor(color);
