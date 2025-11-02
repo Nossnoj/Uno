@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using Uno.Cards;
 using Uno.Players;
 
@@ -53,6 +54,20 @@ namespace Uno.Players
         public void DrawCard() => Hand.AddCard(Deck.drawCard());
 
         public abstract UnoCard playCard(PlayerHand hand, UnoCard topCard);
+
+        public void drawPenaltyCards(string choice)
+        {
+            Console.WriteLine("fel här");
+            if (choice == "d")
+            {
+                for (int i = 0; i < state.CardsToDraw; i++)
+                {
+                    DrawCard();
+                }
+                state.CardsToDraw = 0;
+            }
+         
+        }
     }
 }
 

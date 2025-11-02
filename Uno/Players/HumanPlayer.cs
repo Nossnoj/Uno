@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
+using System.Numerics;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Uno.Players;
 using Uno.Cards;
-using System.Numerics;
+using Uno.Players;
 
 namespace Uno.Players
 {
@@ -19,6 +22,48 @@ namespace Uno.Players
             var deck = base.Deck;
             Render render = new Render();
             render.RenderHand(hand);
+            var tempTopCard = topCard;
+
+            if (topCard.Symbol == "Wild+4")
+                tempTopCard = new PlusFourCard(state.CurrentColor);
+            else if (topCard.Symbol == "Wild")
+                tempTopCard = new ChooseColorCard(state.CurrentColor);
+
+            if (state.CardsToDraw > 0)
+            {
+                if (tempTopCard.Symbol == "+2" || tempTopCard.Symbol == "Wild+4")
+                {
+                    Console.WriteLine($"You must respond to a draw effect. " +
+                        $"You can play a {tempTopCard.Symbol} stack, or type 'd' to draw {state.CardsToDraw} cards.");
+                    string choice = Console.ReadLine().Trim().ToLower();
+
+                    if (int.TryParse(choice, out int choiceIndex) && choiceIndex >= 1 && choiceIndex < hand.Cards.Count + 1)
+                    {
+                        choiceIndex -= 1;
+                        UnoCard chosen = hand.Cards[choiceIndex];
+
+                        if (chosen.Symbol != tempTopCard.Symbol)
+                        {
+                            Console.WriteLine("You can't play that card! Try again.");
+                            return playCard(hand, tempTopCard);
+                        }
+
+                        hand.RemoveCard(chosen);
+                        deck.discard.Add(chosen);
+                        Console.Write($"{name} played ");
+                        render.RenderColor(chosen.color);
+                        Console.WriteLine($"{chosen}");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        return chosen;
+                    }
+                    else
+                    {
+                        drawPenaltyCards(choice);
+                        return null;
+                    }
+                }
+            }
+                
             Console.WriteLine("Select a card number to play, or type 'd' to draw a new card from the deck!");
             string position = Console.ReadLine();
 
@@ -26,7 +71,7 @@ namespace Uno.Players
             {
                 base.DrawCard();
                 Console.WriteLine($"{name} drew a card!");
-                return playCard(hand, topCard);
+                return playCard(hand, tempTopCard);
             }
 
             if (int.TryParse(position, out int positionIndex) && positionIndex >= 1 && positionIndex < hand.Cards.Count + 1)
@@ -34,10 +79,10 @@ namespace Uno.Players
                 positionIndex -= 1;
                 UnoCard chosenCard = hand.Cards[positionIndex];
 
-                if (!chosenCard.CanPlayOn(topCard))
+                if (!chosenCard.CanPlayOn(tempTopCard))
                 {
                     Console.WriteLine("You can't play that card! Try again.");
-                    return playCard(hand, topCard);
+                    return playCard(hand, tempTopCard);
                 }
 
                 hand.RemoveCard(chosenCard);
@@ -70,7 +115,7 @@ namespace Uno.Players
             else
             {
                 Console.WriteLine("Invalid input! Try again.");
-                return playCard(hand, topCard);
+                return playCard(hand, tempTopCard);
             }
         }
     }
