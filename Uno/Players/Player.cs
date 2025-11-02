@@ -16,7 +16,8 @@ namespace Uno.Players
         public Deck Deck { get; }
         protected IStrategy strategy { get; }
         public bool HasCalledUno { get; set; }
-        public GameState state;    
+        public GameState state;
+        private int drawCount = 0;
 
         public Player(string name, IStrategy strategy, Deck deck, GameState state)
         {
@@ -50,7 +51,19 @@ namespace Uno.Players
         }
 
         public void ResetUnoCall() => HasCalledUno = false;
-        public void DrawCard() => Hand.AddCard(Deck.drawCard());
+        public void DrawCard()
+        {
+            if(drawCount == 3)
+            {
+                Console.WriteLine($"{Name} has already drawn 3 cards!" );
+                return;
+            }
+
+            Hand.AddCard(Deck.drawCard());
+            drawCount++;
+        }
+
+        public void ResetDrawCount() => drawCount = 0;
 
         public abstract UnoCard playCard(PlayerHand hand, UnoCard topCard);
     }

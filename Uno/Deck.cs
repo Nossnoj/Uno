@@ -55,7 +55,7 @@ namespace Uno
                 discard.Clear();
                 Shuffle(cards);
             }
-            UnoCard drawnCard = cards[0];
+            UnoCard drawnCard = cards[0]; //exception när vi tar slut på kort
             cards.RemoveAt(0);
             return drawnCard;
         }

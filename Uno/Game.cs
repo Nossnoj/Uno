@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -42,19 +43,19 @@ namespace Uno
                 topCard = deck.drawCard();
             }
             topCard.Play(state);
-            UnoColor color = state.CurrentColor;
-            Console.Write($"Top card:");
-            render.RenderColor(color);
-            Console.WriteLine($" {topCard}");
             Console.ForegroundColor = ConsoleColor.White;
             Turns();
-
         }
 
         public void Turns()
         {
             while (true)
             {
+                Console.Clear();
+                UnoColor color = state.CurrentColor;
+                Console.Write($"Top card:");
+                render.RenderColor(color);
+                Console.WriteLine($" {topCard}");
                 var currentPlayer = playerList[currentPlayerIndex];
                 Console.WriteLine($"{currentPlayer.Name}'s turn!");
                 var chosenCard = currentPlayer.playCard(currentPlayer.Hand, topCard);
@@ -81,6 +82,8 @@ namespace Uno
 
             state.ReverseDirection = false;
             state.SkipNextPlayer = false;
+
+            playerList[currentPlayerIndex].ResetDrawCount();
         }
     }
 }

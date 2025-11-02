@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -27,13 +28,20 @@ namespace Uno.Players
                 render.RenderColor(chosenCard.color);
                 Console.WriteLine($"{chosenCard}");
                 Console.ForegroundColor = ConsoleColor.White;
+
+                if(hand.Cards.Count == 1 && !HasCalledUno)
+                {
+                    CallUno();
+                }
+
                 return chosenCard;
             }
             else
             {
                 base.DrawCard();
+                ResetUnoCall();
                 return playCard(hand, topCard);
             }
         }
-    } //ska automatiskt säga UNO vid 1 kort
+    }
 }

@@ -16,12 +16,19 @@ namespace Uno
             int i = 1;
             foreach (var card in hand)
             {
-                RenderColor(card.color);
-                Console.WriteLine($"{i}: {card}, ");
-                //Console.WriteLine();
+                if(card.color == UnoColor.None && (card.Symbol == "Wild" || card.Symbol == "Wild+4"))
+                {
+                    Console.Write($"{i}: ");
+                    RenderRainbow(card.Symbol);
+                    Console.WriteLine();
+                }
+                else
+                {
+                    RenderColor(card.color);
+                    Console.WriteLine($"{i}: {card}, ");
+                }
                 i++;
             }
-            //UnoColor color = state.CurrentColor;
             Console.ForegroundColor = ConsoleColor.White;
         }
         public void RenderColor(UnoColor color)
@@ -43,9 +50,26 @@ namespace Uno
                 default:
                     Console.ResetColor();
                     break;
-                    //lägg till att göra regnbågsfärg för wildcards
             }
         }
 
+        private void RenderRainbow(string text)
+        {
+            ConsoleColor[] rainbowColors = new[]
+            {
+                ConsoleColor.Red,
+                ConsoleColor.Yellow,
+                ConsoleColor.Green,
+                ConsoleColor.Blue
+            };
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                Console.ForegroundColor = rainbowColors[i % rainbowColors.Length];
+                Console.Write(text[i]);
+            }
+
+            Console.ForegroundColor = ConsoleColor.White;
+        }
     }
 }

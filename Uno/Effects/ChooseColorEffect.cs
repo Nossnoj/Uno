@@ -15,7 +15,12 @@ namespace Uno.Effects
             {
                 Console.Write("Choose a color: ");
                 string color = Console.ReadLine().Trim();
-                if(Enum.TryParse<UnoColor>(color, true, out var chosenColor) && chosenColor != UnoColor.None)
+                if (int.TryParse(color, out _))
+                {
+                    Console.WriteLine("Invalid input! Use a color name, not a number!");
+                    continue;
+                }
+                if (Enum.TryParse<UnoColor>(color, true, out var chosenColor) && chosenColor != UnoColor.None)
                 {
                     state.CurrentColor = chosenColor;
                     break;

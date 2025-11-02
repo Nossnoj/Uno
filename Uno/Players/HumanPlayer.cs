@@ -61,6 +61,7 @@ namespace Uno.Players
                         Console.WriteLine("Drawing 2 penalty cards!");
                         hand.AddCard(deck.drawCard());
                         hand.AddCard(deck.drawCard());
+                        ResetUnoCall();
                     }
                 }
 
