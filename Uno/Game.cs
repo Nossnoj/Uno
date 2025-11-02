@@ -51,11 +51,12 @@ namespace Uno
         {
             while (true)
             {
-                Console.Clear();
+                //Console.Clear();
                 UnoColor color = state.CurrentColor;
                 Console.Write($"Top card:");
                 render.RenderColor(color);
                 Console.WriteLine($" {topCard}");
+                Console.ForegroundColor = ConsoleColor.White;
                 var currentPlayer = playerList[currentPlayerIndex];
                 Console.WriteLine($"{currentPlayer.Name}'s turn!");
                 UnoCard? chosenCard = currentPlayer.playCard(currentPlayer.Hand, topCard);

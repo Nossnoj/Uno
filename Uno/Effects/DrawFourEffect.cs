@@ -12,6 +12,11 @@ namespace Uno.Effects
         public void AddEffect(PlusFourCard card, GameState state)
         {
             state.CardsToDraw += 4;
+            if (state.ColorChosen)
+            {
+                state.ColorChosen = false;
+                return;
+            }
             while (true)
             {
                 Console.Write("Choose a color: ");

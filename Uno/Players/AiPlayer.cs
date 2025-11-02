@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,35 +28,21 @@ namespace Uno.Players
             }
             if (state.CardsToDraw > 0)
             {
-                if (tempTopCard.Symbol == "+2" || tempTopCard.Symbol == "Wild+4" || state.CardsToDraw > 0)
+                var stackable = hand.Cards.FirstOrDefault(c => c.Symbol == tempTopCard.Symbol);
+                if (stackable != null)
                 {
-                    var stackable = hand.Cards.FirstOrDefault(c => c.Symbol == tempTopCard.Symbol);
-                    if (stackable != null)
-                    {
-                        hand.RemoveCard(stackable);
-                        Deck.discard.Add(stackable);
-                        Console.Write($"{Name} played ");
-                        render.RenderColor(stackable.color);
-                        Console.WriteLine($"{stackable}");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        return stackable;
-                    }
-
-                    drawPenaltyCards("d");
-                    return null;
+                    playlogic(hand, stackable);
                 }
+                Console.WriteLine($"{Name} draws {state.CardsToDraw} cards.");
+                drawPenaltyCards("d");
+                return null;
             }
             var chosenCard = strategy.cardToPlay(hand, tempTopCard);
             if (chosenCard != null)
             {
-                hand.RemoveCard(chosenCard);
-                Deck.discard.Add(chosenCard);
-                Console.Write($"{Name} played ");
-                render.RenderColor(chosenCard.color);
-                Console.WriteLine($"{chosenCard}");
-                Console.ForegroundColor = ConsoleColor.White;
+                playlogic(hand, chosenCard);
 
-                if(hand.Cards.Count == 1 && !HasCalledUno)
+                if (hand.Cards.Count == 1 && !HasCalledUno)
                 {
                     CallUno();
                 }
@@ -68,6 +55,33 @@ namespace Uno.Players
                 ResetUnoCall();
                 return playCard(hand, topCard);
             }
+        }
+        private void chooseColor(UnoCard card)
+        {
+            if (card.Symbol == "Wild+4" || card.Symbol == "Wild")
+            {
+                var colorChoice = Hand.Cards
+                .Where(c => c.color != UnoColor.None)
+                .GroupBy(c => c.color)
+                .OrderByDescending(g => g.Count())
+                .Select(g => g.Key)
+                .FirstOrDefault();
+                if (colorChoice == UnoColor.None)
+                    colorChoice = UnoColor.Red;
+                state.CurrentColor = colorChoice;
+                state.ColorChosen = true;
+            }
+        }
+        private void playlogic(PlayerHand hand, UnoCard card)
+        {
+            Render render = new Render();
+            chooseColor(card);
+            hand.RemoveCard(card);
+            Deck.discard.Add(card);
+            Console.Write($"{Name} played ");
+            render.RenderColor(card.color);
+            Console.WriteLine($"{card}");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

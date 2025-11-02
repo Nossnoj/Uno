@@ -18,14 +18,17 @@ namespace Uno
             {
                 if(card.color == UnoColor.None && (card.Symbol == "Wild" || card.Symbol == "Wild+4"))
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.Write($"{i}: ");
                     RenderRainbow(card.Symbol);
                     Console.WriteLine();
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write($"{i}: ");
                     RenderColor(card.color);
-                    Console.WriteLine($"{i}: {card}, ");
+                    Console.WriteLine($"{card}, ");
                 }
                 i++;
             }

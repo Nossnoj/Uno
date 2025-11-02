@@ -13,6 +13,7 @@ namespace Uno
         public bool SkipNextPlayer { get; set; }
         public bool ReverseDirection { get; set; }
         public int CardsToDraw { get; set; }
+        public bool ColorChosen { get; set; }
 
         public void ResetSkipEffect()
         {
