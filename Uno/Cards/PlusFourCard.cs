@@ -11,5 +11,7 @@ namespace Uno.Cards
     {
         public PlusFourCard()
             : base(UnoColor.None, "Wild+4", new DrawFourEffect()) { }
+        public PlusFourCard(UnoColor color)
+            : base(color, "Wild+4", new DrawFourEffect()) { }
     }
 }
