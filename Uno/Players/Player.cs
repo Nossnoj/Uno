@@ -18,7 +18,7 @@ namespace Uno.Players
         protected IStrategy strategy { get; }
         public bool HasCalledUno { get; set; }
         public GameState state;
-        private int drawCount = 0;
+        protected int drawCount = 0;
 
         public Player(string name, IStrategy strategy, Deck deck, GameState state)
         {
@@ -62,6 +62,7 @@ namespace Uno.Players
 
             Hand.AddCard(Deck.drawCard());
             drawCount++;
+            ResetUnoCall();
         }
 
         public void ResetDrawCount() => drawCount = 0;

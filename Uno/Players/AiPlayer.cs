@@ -47,10 +47,8 @@ namespace Uno.Players
                     CallUno();
                 }
 
-                return chosenCard;
-            }
-            else
-            {
+                    return chosenCard;
+                }
                 DrawCard();
                 ResetUnoCall();
                 return playCard(hand, topCard);
