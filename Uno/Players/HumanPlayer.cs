@@ -24,7 +24,7 @@ namespace Uno.Players
 
             if (position.ToLower() == "d")
             {
-                hand.AddCard(deck.drawCard());
+                base.DrawCard();
                 Console.WriteLine($"{name} drew a card!");
                 return playCard(hand, topCard);
             }
@@ -64,21 +64,9 @@ namespace Uno.Players
                     }
                 }
 
-                return chosenCard;
-                    
+                return chosenCard;   
                     
                 }
-                else
-                {
-                    Console.WriteLine("You can't play that card! Try again.");
-                    return playCard(hand, topCard);
-                }
-            }
-            else if (position.ToLower() == "d")
-            {
-                base.DrawCard();
-                return playCard(hand, topCard);
-            }
             else
             {
                 Console.WriteLine("Invalid input! Try again.");

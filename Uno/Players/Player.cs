@@ -30,7 +30,7 @@ namespace Uno.Players
 
         private void makeHand()
         {
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 7; i++)
             {
                 Hand.AddCard(Deck.drawCard());
             }
@@ -50,7 +50,7 @@ namespace Uno.Players
         }
 
         public void ResetUnoCall() => HasCalledUno = false;
-        private void DrawCard() => Hand.AddCard(Deck.drawCard());
+        public void DrawCard() => Hand.AddCard(Deck.drawCard());
 
         public abstract UnoCard playCard(PlayerHand hand, UnoCard topCard);
     }
