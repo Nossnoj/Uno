@@ -10,6 +10,6 @@ namespace Uno.Factories
 {
     internal abstract class PlayerFactory
     {
-        public abstract Player createPlayer(string name, IStrategy strategy, Deck deck);
+        public abstract Player createPlayer(string name, IStrategy strategy, Deck deck, GameState state);
     }
 }

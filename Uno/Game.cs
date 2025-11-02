@@ -24,58 +24,32 @@ namespace Uno
             deck = new Deck();
             PlayerFactory humanPlayerFactory = new HumanPlayerFactory();
             PlayerFactory aiPlayerFactory = new AIPlayerFactory();
-            Player Player1 = humanPlayerFactory.createPlayer("Player 1", new NormalStrategy(), deck);
-            Player Player2 = aiPlayerFactory.createPlayer("AI 1", new NormalStrategy(), deck);
-            Player Player3 = aiPlayerFactory.createPlayer("AI 2", new NormalStrategy(), deck);
-            Player Player4 = aiPlayerFactory.createPlayer("AI 3", new NormalStrategy(), deck);
+            Player Player1 = humanPlayerFactory.createPlayer("Player 1", new NormalStrategy(), deck, state);
+            Player Player2 = aiPlayerFactory.createPlayer("AI 1", new NormalStrategy(), deck, state);
+            Player Player3 = aiPlayerFactory.createPlayer("AI 2", new NormalStrategy(), deck, state);
+            Player Player4 = aiPlayerFactory.createPlayer("AI 3", new NormalStrategy(), deck, state);
             playerList.AddRange(new[] { Player1, Player2, Player3, Player4 });
             StartGame();
 
         }
         public void StartGame()
         {
+            var numbers = new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
             topCard = deck.drawCard();
+            if (!numbers.Contains(topCard.Symbol))
+            {
+                deck.discard.Add(topCard);
+                topCard = deck.drawCard();
+            }
             topCard.Play(state);
             UnoColor color = state.CurrentColor;
             Console.Write($"Top card:");
             render.RenderColor(color);
             Console.WriteLine($" {topCard}");
-            //render.RenderHand(playerList, state);
+            Console.ForegroundColor = ConsoleColor.White;
             Turns();
 
         }
-        /*public void RenderHand()
-        {
-            var player = playerList[0];
-            foreach (var card in player.Hand)
-            {
-                RenderColor(card.color);
-                Console.Write($"{card}, ");
-            }
-            UnoColor color = state.CurrentColor;
-        }
-        public void RenderColor(UnoColor color)
-        {
-            switch (color)
-            {
-                case UnoColor.Red:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    break;
-                case UnoColor.Blue:
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    break;
-                case UnoColor.Green:
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    break;
-                case UnoColor.Yellow:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                default:
-                    Console.ResetColor();
-                    break;
-                //lägg till att göra regnbågsfärg för wildcards
-            }
-        }*/
 
         public void Turns()
         {

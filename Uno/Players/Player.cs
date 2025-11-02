@@ -15,13 +15,15 @@ namespace Uno.Players
         public string Name { get; }
         public Deck Deck { get; }
         protected IStrategy strategy { get; }
+        public GameState state;    
 
-        public Player(string name, IStrategy strategy, Deck deck)
+        public Player(string name, IStrategy strategy, Deck deck, GameState state)
         {
             Name = name;
             this.strategy = strategy;
             Hand = new PlayerHand();
             this.Deck = deck;
+            this.state = state;
             makeHand();
         }
 
@@ -32,7 +34,7 @@ namespace Uno.Players
                 Hand.AddCard(Deck.drawCard());
             }
         }
-        private void DrawCard() => Hand.AddCard(Deck.drawCard());
+        public void DrawCard() => Hand.AddCard(Deck.drawCard());
 
         public abstract UnoCard playCard(PlayerHand hand, UnoCard topCard);
     }

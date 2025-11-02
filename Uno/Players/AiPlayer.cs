@@ -11,9 +11,10 @@ namespace Uno.Players
 {
     internal class AiPlayer : Player
     {
-        public AiPlayer(string name, IStrategy strategy, Deck deck) : base(name, strategy, deck) { }
+        public AiPlayer(string name, IStrategy strategy, Deck deck, GameState state) : base(name, strategy, deck, state) { }
         public override UnoCard playCard(PlayerHand hand, UnoCard topCard)
         {
+            Render render = new Render();
             string name = base.Name;
             var deck = base.Deck;
             IStrategy strategy = base.strategy;
@@ -22,12 +23,15 @@ namespace Uno.Players
             {
                 hand.RemoveCard(chosenCard);
                 deck.discard.Add(chosenCard);
-                Console.WriteLine($"{name} played {chosenCard}");
+                Console.Write($"{name} played ");
+                render.RenderColor(chosenCard.color);
+                Console.WriteLine($"{chosenCard}");
+                Console.ForegroundColor = ConsoleColor.White;
                 return chosenCard;
             }
             else
             {
-                hand.AddCard(deck.drawCard());
+                base.DrawCard();
                 return playCard(hand, topCard);
             }
         }
