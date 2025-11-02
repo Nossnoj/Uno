@@ -28,7 +28,7 @@ namespace Uno.Players
 
         private void makeHand()
         {
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 2; i++)
             {
                 Hand.AddCard(Deck.drawCard());
             }
