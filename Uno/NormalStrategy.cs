@@ -11,13 +11,6 @@ namespace Uno
     {
         public UnoCard cardToPlay(PlayerHand hand, UnoCard topCard)
         {
-            /*if (topCard.Symbol == "+2" || topCard.Symbol == "Wild+4")
-            {
-                var stackable = hand.Cards
-                    .FirstOrDefault(card => card.Symbol == "+2" || card.Symbol == "Wild+4");
-                if (stackable != null)
-                    return stackable;
-            }*/
             var playableCards = hand.Cards
                 .FirstOrDefault(card => card.CanPlayOn(topCard));
 

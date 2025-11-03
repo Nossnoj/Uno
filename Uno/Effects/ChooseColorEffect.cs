@@ -11,13 +11,20 @@ namespace Uno.Effects
     {
         public void AddEffect(ChooseColorCard card, GameState state)
         {
+            GameRender renderGame = new GameRender();
+            if (state.ColorChosen)
+            {
+                state.ColorChosen = false;
+                return;
+            }
             while (true)
             {
-                Console.Write("Choose a color: ");
+                renderGame.RenderComment("                         ", 0);
+                renderGame.RenderComment("Choose a color: ", 0);
                 string color = Console.ReadLine().Trim();
                 if (int.TryParse(color, out _))
                 {
-                    Console.WriteLine("Invalid input! Use a color name, not a number!");
+                    renderGame.RenderComment("Invalid input! Use a color name, not a number!", 0);
                     continue;
                 }
                 if (Enum.TryParse<UnoColor>(color, true, out var chosenColor) && chosenColor != UnoColor.None)
@@ -25,7 +32,7 @@ namespace Uno.Effects
                     state.CurrentColor = chosenColor;
                     break;
                 }
-                Console.WriteLine("Invalid color! Try again!");
+                renderGame.RenderComment("Invalid color! Try again!", 0);
             }
         }
     }

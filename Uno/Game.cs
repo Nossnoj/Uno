@@ -20,6 +20,7 @@ namespace Uno
         private int currentPlayerIndex = 0;
         private int direction = 1;
         public Render render = new Render();
+        public GameRender gameRender = new GameRender();
         public Game()
         {
             deck = new Deck();
@@ -51,14 +52,12 @@ namespace Uno
         {
             while (true)
             {
-                //Console.Clear();
                 UnoColor color = state.CurrentColor;
-                Console.Write($"Top card:");
-                render.RenderColor(color);
-                Console.WriteLine($" {topCard}");
-                Console.ForegroundColor = ConsoleColor.White;
+                gameRender.RenderHands(playerList);
+                gameRender.RenderTopCard(topCard, state);
                 var currentPlayer = playerList[currentPlayerIndex];
-                Console.WriteLine($"{currentPlayer.Name}'s turn!");
+                string s = $"{currentPlayer.Name}'s turn!";
+                gameRender.RenderComment(s, 0);
                 UnoCard? chosenCard = currentPlayer.playCard(currentPlayer.Hand, topCard);
                 if (chosenCard == null)
                 {
@@ -68,10 +67,9 @@ namespace Uno
                 }
                 topCard = chosenCard;
                 topCard.Play(state);
-                Console.WriteLine($"{currentPlayer.Name} has {currentPlayer.Hand.Cards.Count} cards");
                 GameWin(currentPlayer);
+                Thread.Sleep(2000);
                 NextPlayer();
-                //kalla på NextPlayer på rätt sätt, detta är enbart en temporär lösning
             }
         }
 
@@ -100,7 +98,8 @@ namespace Uno
             var name = player.Name;
             if (hand.Cards.Count == 0)
             {
-                Console.WriteLine($"{name} has won!");
+                string s = $"{name} has won!";
+                gameRender.RenderComment(s,10);
                 Environment.Exit(0);
             }
         }
