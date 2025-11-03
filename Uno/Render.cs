@@ -21,14 +21,14 @@ namespace Uno
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write($"{i}: ");
                     RenderRainbow(card.Symbol);
-                    Console.WriteLine();
+                    //Console.Write(" ");
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write($"{i}: ");
                     RenderColor(card.color);
-                    Console.WriteLine($"{card}, ");
+                    Console.Write($"{card}, ");
                 }
                 i++;
             }
@@ -71,6 +71,7 @@ namespace Uno
                 Console.ForegroundColor = rainbowColors[i % rainbowColors.Length];
                 Console.Write(text[i]);
             }
+            Console.Write(" ");
 
             Console.ForegroundColor = ConsoleColor.White;
         }

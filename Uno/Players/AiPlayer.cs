@@ -13,10 +13,10 @@ namespace Uno.Players
 {
     internal class AiPlayer : Player 
     {
+        GameRender renderGame = new GameRender();
         public AiPlayer(string name, IStrategy strategy, Deck deck, GameState state) : base(name, strategy, deck, state) { }
         public override UnoCard playCard(PlayerHand hand, UnoCard topCard)
         {
-            Render render = new Render();
             var tempTopCard = topCard;
             if (topCard.Symbol == "Wild+4")
             {
@@ -31,28 +31,38 @@ namespace Uno.Players
                 var stackable = hand.Cards.FirstOrDefault(c => c.Symbol == tempTopCard.Symbol);
                 if (stackable != null)
                 {
+                    chooseColor(stackable);
                     playlogic(hand, stackable);
                 }
-                Console.WriteLine($"{Name} draws {state.CardsToDraw} cards.");
+                renderGame.RenderComment($"{Name} draws {state.CardsToDraw} cards.", 0);
+                Thread.Sleep(3000);
                 drawPenaltyCards("d");
                 return null;
             }
-            var chosenCard = strategy.cardToPlay(hand, tempTopCard);
-            if (chosenCard != null)
+            while (drawCount < 3)
             {
-                playlogic(hand, chosenCard);
-
-                if (hand.Cards.Count == 1 && !HasCalledUno)
+                var chosenCard = strategy.cardToPlay(hand, tempTopCard);
+                if (chosenCard != null)
                 {
-                    CallUno();
-                }
+                    chooseColor(chosenCard);
+                    playlogic(hand, chosenCard);
+
+                    if (hand.Cards.Count == 1 && !HasCalledUno)
+                    {
+                        CallUno();
+                    }
 
                     return chosenCard;
                 }
                 DrawCard();
-                ResetUnoCall();
-                return playCard(hand, topCard);
+                renderGame.RenderComment($"{Name} drew card!", 0);
+                Thread.Sleep(3000);
             }
+            ResetUnoCall();
+            renderGame.RenderComment($"{Name} drew 3 cards but could not play!", 0);
+            Thread.Sleep(3000);
+            return null;
+        }
         private void chooseColor(UnoCard card)
         {
             if (card.Symbol == "Wild+4" || card.Symbol == "Wild")
@@ -72,13 +82,10 @@ namespace Uno.Players
         private void playlogic(PlayerHand hand, UnoCard card)
         {
             Render render = new Render();
-            chooseColor(card);
             hand.RemoveCard(card);
             Deck.discard.Add(card);
-            Console.Write($"{Name} played ");
-            render.RenderColor(card.color);
-            Console.WriteLine($"{card}");
-            Console.ForegroundColor = ConsoleColor.White;
+            renderGame.RenderComment($"{Name} played {card}!", 0);
+            Thread.Sleep(3000);
         }
     }
 }
