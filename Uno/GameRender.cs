@@ -112,10 +112,6 @@ namespace Uno
 
             Console.SetCursorPosition(0, commentRow-7);
             Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");
-           /* Console.SetCursorPosition(0, commentRow - 6);
-            Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");
-            Console.SetCursorPosition(0, commentRow - 5);
-            Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");*/
             Console.SetCursorPosition(posX, commentRow - 2);
 
             Console.Write(s);
