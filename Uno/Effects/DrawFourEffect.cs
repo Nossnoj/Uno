@@ -37,5 +37,4 @@ namespace Uno.Effects
             }
         }
     }
-    //potentiellt skrota draw2 och draw4 och ersätta med en drawcards klass som tar in ett antal?
 }

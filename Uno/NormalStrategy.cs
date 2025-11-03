@@ -18,9 +18,6 @@ namespace Uno
                 return playableCards;
 
             return null;
-
-            //kanske lägga till lite mer logik här senare
-            //lägga till så att om man har flera av liknande kort så kan man lägga ner dem
         }
     }
 }

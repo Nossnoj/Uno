@@ -22,7 +22,6 @@ namespace Uno.Players
             string name = base.Name;
             var deck = base.Deck;
             Render render = new Render();
-            //render.RenderHand(hand);
             var tempTopCard = topCard;
             GameRender renderGame = new GameRender();
 
@@ -66,8 +65,6 @@ namespace Uno.Players
                 }
             }
                 
-            /*string playPrompt ="Select a card number to play, or type 'd' to draw a new card from the deck!";
-            renderGame.RenderComment(playPrompt, 35);*/
             string position = Console.ReadLine();
 
             if (position.ToLower() == "d")

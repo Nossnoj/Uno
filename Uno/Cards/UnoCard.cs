@@ -28,7 +28,7 @@ namespace Uno.Cards
 
         public bool CanPlayOn(UnoCard other)
         {
-            if(Color == UnoColor.None) //dvs ifall ett kort antingen är +4 eller ChooseColorCard
+            if(Color == UnoColor.None) 
             {
                 return true;
             }
@@ -45,7 +45,6 @@ namespace Uno.Cards
 
             dynamic dynamicEffect = effect;
             dynamicEffect.AddEffect((dynamic)this, state);
-            //Effect.AddEffect(state);
         }
 
         public override string ToString()

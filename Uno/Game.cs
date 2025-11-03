@@ -16,7 +16,7 @@ namespace Uno
         private GameState state = new GameState();
         private Deck deck;
         private List<Player> playerList = new();
-        private UnoCard? topCard; //null innan spelet börjar
+        private UnoCard? topCard;
         private int currentPlayerIndex = 0;
         private int direction = 1;
         public Render render = new Render();

@@ -10,12 +10,7 @@ namespace Uno
     {
         static void Main(string[] args)
         {
-
-            //konsekvent casing
-            //Kommentarer
-
             var game = new Game();
-
         }
     }
 }

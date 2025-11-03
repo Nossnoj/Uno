@@ -21,7 +21,6 @@ namespace Uno
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write($"{i}: ");
                     RenderRainbow(card.Symbol);
-                    //Console.Write(" ");
                 }
                 else
                 {
