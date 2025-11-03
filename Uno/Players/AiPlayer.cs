@@ -67,6 +67,13 @@ namespace Uno.Players
         {
             if (card.Symbol == "Wild+4" || card.Symbol == "Wild")
             {
+                //KRAV 6:
+                //1: LINQ
+                //2: Med LINQ kan vi ta listan med kort ur handen och , filtrera bort färglösa kort (Wild Cards), gruppera de kvarstående korten efter färg,
+                // sortera grupperna i fallande ordning där de grupper med flest kort hamnar överst. Därefter tar vi ut enbart färgen från korten och sist väljer vi det översta objektets färg. 
+                //3:  Utan LINQ så skulle vi behöva en foreach-loop som tar varje kort ur handen, därefter en if-sats som kollar om kortet har en färg, sen en if sats som kollar vilken färg ett kort har
+                // sedan hade vi ökat en integer för varje kort per färg, sist hade vi tagit den integern med högst siffra och tilldelat state.currentColor den färgen som var kopplad till integern.
+                // Detta hade inte bara varit längre men även svårare att läsa. 
                 var colorChoice = Hand.Cards
                 .Where(c => c.color != UnoColor.None)
                 .GroupBy(c => c.color)
