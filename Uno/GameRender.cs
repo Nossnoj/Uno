@@ -63,10 +63,6 @@ namespace Uno
                         break;
 
                     case 0: 
-                        //Console.SetCursorPosition(centerX - cardCount / 2 - 20 , Console.WindowHeight - 3);
-                        //render.RenderHand(player.Hand);
-                        //Console.SetCursorPosition(centerX - player.Name.Length / 2 - 1, Console.WindowHeight - 2);
-                        //Console.Write(player.Name);
                         RenderHand(player.Hand);
                         break;
                 }
@@ -116,10 +112,10 @@ namespace Uno
 
             Console.SetCursorPosition(0, commentRow-7);
             Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");
-            Console.SetCursorPosition(0, commentRow - 6);
+           /* Console.SetCursorPosition(0, commentRow - 6);
             Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");
             Console.SetCursorPosition(0, commentRow - 5);
-            Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");
+            Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");*/
             Console.SetCursorPosition(posX, commentRow - 2);
 
             Console.Write(s);
