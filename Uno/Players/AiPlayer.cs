@@ -53,7 +53,6 @@ namespace Uno.Players
                 ResetUnoCall();
                 return playCard(hand, topCard);
             }
-        }
         private void chooseColor(UnoCard card)
         {
             if (card.Symbol == "Wild+4" || card.Symbol == "Wild")
