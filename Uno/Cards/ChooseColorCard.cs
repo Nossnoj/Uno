@@ -13,5 +13,10 @@ namespace Uno.Cards
             : base(UnoColor.None, "Wild", new ChooseColorEffect()) { }
         public ChooseColorCard(UnoColor color)
             : base(color, "Wild", new ChooseColorEffect()) { }
+
+        public override bool CanPlayOn(UnoCard other)
+        {
+            return true;
+        }
     }
 }

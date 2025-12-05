@@ -11,5 +11,10 @@ namespace Uno.Cards
     {
         public SkipCard(UnoColor color)
             : base(color, "Skip", new SkipEffect()) { }
+
+        public override bool CanPlayOn(UnoCard other) //kan spelas på alla nummerkort oavsett färg
+        {
+            return other is NumberCard || other.color == this.color;
+        }
     }
 }

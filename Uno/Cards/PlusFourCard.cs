@@ -13,5 +13,10 @@ namespace Uno.Cards
             : base(UnoColor.None, "Wild+4", new DrawFourEffect()) { }
         public PlusFourCard(UnoColor color)
             : base(color, "Wild+4", new DrawFourEffect()) { }
+
+        public override bool CanPlayOn(UnoCard other)
+        {
+            return other.color == UnoColor.None || other.color == UnoColor.Red;
+        }
     }
 }

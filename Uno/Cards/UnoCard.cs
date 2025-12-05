@@ -26,7 +26,7 @@ namespace Uno.Cards
             this.effect = effect;
         }
 
-        public bool CanPlayOn(UnoCard other)
+        public virtual bool CanPlayOn(UnoCard other)
         {
             if(Color == UnoColor.None) 
             {

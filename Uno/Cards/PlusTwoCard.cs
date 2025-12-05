@@ -11,5 +11,10 @@ namespace Uno.Cards
     {
         public PlusTwoCard(UnoColor color)
             : base(color, "+2", new DrawTwoEffect()) { }
+
+        public override bool CanPlayOn(UnoCard other)
+        {
+            return other.color == this.color || other is PlusTwoCard;
+        }
     }
 }

@@ -11,5 +11,11 @@ namespace Uno.Cards
     {
         public ReverseCard(UnoColor color)
             : base(color, "Reverse", new ReverseEffect()) { }
+
+        public override bool CanPlayOn(UnoCard other) 
+        {
+            if(other is SkipCard) return false;
+            return this.color == other.color || this.Symbol == other.Symbol;
+        }
     }
 }
