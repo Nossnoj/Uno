@@ -9,11 +9,14 @@ using Uno.Players;
 
 namespace Uno.Factories
 {
-    internal class HumanPlayerFactory : PlayerFactory
+    internal class HumanPlayerFactory : IPlayerFactory
     {
-        public override Player createPlayer(string name, IStrategy strategy, Deck deck, GameState state)
+        public Player createPlayer(string name, Deck deck, GameState state)
         {
-            return new HumanPlayer(name, strategy, deck, state);
+            Console.WriteLine("Write your name!");
+            name = Console.ReadLine();
+
+            return new HumanPlayer(name, new NormalStrategy(), deck, state);
         }
     }
 }

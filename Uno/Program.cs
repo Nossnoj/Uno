@@ -3,6 +3,7 @@ using System.Text;
 using Uno;
 using Uno.Cards;
 using Uno.Effects;
+using Uno.Factories;
 
 namespace Uno
 {
@@ -10,8 +11,9 @@ namespace Uno
     {
         static void Main(string[] args)
         {
-            var game = new Game();
-
+            IPlayerFactory humanPlayerFactory = new HumanPlayerFactory();
+            IPlayerFactory AIPlayerFactory = new AIPlayerFactory();
+            var game = new Game(humanPlayerFactory, AIPlayerFactory);
             var state = new GameState();
         }
     }
