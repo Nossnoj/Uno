@@ -14,7 +14,7 @@ namespace Uno.Factories
         public Player createPlayer(string name, Deck deck, GameState state)
         {
             Console.WriteLine("Write your name!");
-            name = Console.ReadLine() ?? "HumanPlayer";
+            name = Console.ReadLine();
 
             return new HumanPlayer(name, new NormalStrategy(), deck, state);
         }
