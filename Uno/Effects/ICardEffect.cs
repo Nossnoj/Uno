@@ -9,11 +9,11 @@ namespace Uno.Effects
 {
     //Krav 1
     //1: Generics
-    //2: Vi använder generisk typ ICardEffect<TCard> där TCard är en typ av UnoCard.
-    //   Detta gör interfacet flexibelt och typsäkert då varje effekt vet exakt vilken korttyp den tillhör.
+    //2: Vi använder generiska typer UnoCard<TCard, TEffect> och ICardEffect<TCard> för att varje kort ska vara kopplat till sin specifika effekt.
+    //   Detta medför flexibilitet och typsäkerhet då varje effekt vet exakt vilken korttyp den tillhör.
     //   T.ex SkipEffect implementerar ICardEffect<SkipCard> och ReverseEffect implementerar ICardEffect<ReverseCard>.
-    //3: Vi använder det för att tydligt koppla varje effekt till rätt korttyp på ett typsäkert sätt.
-    //   Utan detta hade man kunnat tilldela ett kort en effekt som den inte ska tillhöra.
+    //3: Detta gör att varje kort alltid konstrueras med rätt subtyp och korrekt effekt.
+    //   Utan detta hade man kunnat skapa felaktiga kombinationer som inte borde gå att skapa.
     //   Exempelvis hade ett SkipCard kunnat skapas med en DrawTwoEffect vilket inte borde gå.
     internal interface ICardEffect<TCard> where TCard : UnoCard
     {
