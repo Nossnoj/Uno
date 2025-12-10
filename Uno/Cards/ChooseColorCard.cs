@@ -7,7 +7,7 @@ using Uno.Effects;
 
 namespace Uno.Cards
 {
-    internal class ChooseColorCard : UnoCard
+    internal class ChooseColorCard : UnoCard<ChooseColorCard, ChooseColorEffect>
     {
         public ChooseColorCard()
             : base(UnoColor.None, "Wild", new ChooseColorEffect()) { }

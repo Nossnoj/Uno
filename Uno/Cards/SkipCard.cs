@@ -7,7 +7,7 @@ using Uno.Effects;
 
 namespace Uno.Cards
 {
-    internal class SkipCard : UnoCard
+    internal class SkipCard : UnoCard<SkipCard, SkipEffect>
     {
         public SkipCard(UnoColor color)
             : base(color, "Skip", new SkipEffect()) { }

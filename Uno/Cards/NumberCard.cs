@@ -7,7 +7,7 @@ using Uno.Effects;
 
 namespace Uno.Cards
 {
-    internal class NumberCard : UnoCard
+    internal class NumberCard : UnoCard<NumberCard, NoEffect>
     {
         public int Number { get; }
         public NumberCard(UnoColor color, string number)

@@ -7,7 +7,7 @@ using Uno.Effects;
 
 namespace Uno.Cards
 {
-    internal class ReverseCard : UnoCard
+    internal class ReverseCard : UnoCard<ReverseCard, ReverseEffect>
     {
         public ReverseCard(UnoColor color)
             : base(color, "Reverse", new ReverseEffect()) { }

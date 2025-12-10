@@ -7,7 +7,7 @@ using Uno.Effects;
 
 namespace Uno.Cards
 {
-    internal class PlusFourCard : UnoCard
+    internal class PlusFourCard : UnoCard<PlusFourCard, DrawFourEffect>
     {
         public PlusFourCard()
             : base(UnoColor.None, "Wild+4", new DrawFourEffect()) { }

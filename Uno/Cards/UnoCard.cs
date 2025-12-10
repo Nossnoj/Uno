@@ -17,13 +17,11 @@ namespace Uno.Cards
         protected UnoColor Color { get; }
         public UnoColor color => Color;
         public string Symbol { get; }
-        private object effect;
 
-        protected UnoCard(UnoColor color, string symbol, object effect)
+        protected UnoCard(UnoColor color, string symbol)
         {
             Color = color;
             Symbol = symbol;
-            this.effect = effect;
         }
 
         public virtual bool CanPlayOn(UnoCard other)
@@ -36,16 +34,7 @@ namespace Uno.Cards
             return this.Color == other.Color || this.Symbol == other.Symbol;
         }
 
-        public void Play(GameState state)
-        {
-            if(Color != UnoColor.None)
-            {
-                state.CurrentColor = Color;
-            }
-
-            dynamic dynamicEffect = effect;
-            dynamicEffect.AddEffect((dynamic)this, state);
-        }
+        public abstract void Play(GameState state);
 
         public override string ToString()
             => $"{Symbol}";
