@@ -8,11 +8,23 @@ using Uno.Players;
 
 namespace Uno.Factories
 {
-    internal class AIPlayerFactory : PlayerFactory
+    internal class AIPlayerFactory : IPlayerFactory
     {
-        public override Player createPlayer(string name, IStrategy strategy, Deck deck, GameState state)
+        public Player createPlayer(string name, Deck deck, GameState state)
         {
-            return new AiPlayer(name, strategy, deck, state);
+            string newname;
+            Random rand = new Random();
+            if(rand.Next(0, 2) == 0)
+            {
+                newname = "Aggressive AI " + name;
+                return new AiPlayer(newname, new AggressiveStrategy(), deck, state);
+            }
+            else
+            {
+                newname = "Normal AI " + name;
+                return new AiPlayer(newname, new NormalStrategy(), deck, state);
+            }
+
         }
     }
 }

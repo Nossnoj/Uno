@@ -21,18 +21,27 @@ namespace Uno
         private int direction = 1;
         public Render render = new Render();
         public GameRender gameRender = new GameRender();
-        public Game()
+        IPlayerFactory humanPlayerFactory;
+        IPlayerFactory AIPlayerFactory;
+        public Game(IPlayerFactory humanPlayerFactory, IPlayerFactory AIPlayerFactory)
         {
+            this.humanPlayerFactory = humanPlayerFactory;
+            this.AIPlayerFactory = AIPlayerFactory;
             deck = new Deck();
-            PlayerFactory humanPlayerFactory = new HumanPlayerFactory();
-            PlayerFactory aiPlayerFactory = new AIPlayerFactory();
-            Player Player1 = humanPlayerFactory.createPlayer("Player 1", new NormalStrategy(), deck, state);
-            Player Player2 = aiPlayerFactory.createPlayer("AI 1", new NormalStrategy(), deck, state);
-            Player Player3 = aiPlayerFactory.createPlayer("AI 2", new NormalStrategy(), deck, state);
-            Player Player4 = aiPlayerFactory.createPlayer("AI 3", new NormalStrategy(), deck, state);
-            playerList.AddRange(new[] { Player1, Player2, Player3, Player4 });
+            createPlayers();
             StartGame();
 
+        }
+        public void createPlayers()
+        {
+            Player humanPlayer = humanPlayerFactory.createPlayer("Player", deck, state);
+            playerList.Add(humanPlayer);
+            for (int i = 0; i < 3; i++)
+            {
+                string aiName = $"Player {i + 1}";
+                Player AIPlayer = AIPlayerFactory.createPlayer(aiName, deck, state);
+                playerList.Add(AIPlayer);
+            }
         }
         public void StartGame()
         {
