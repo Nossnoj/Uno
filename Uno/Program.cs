@@ -2,7 +2,6 @@
 using System.Text;
 using Uno;
 using Uno.Cards;
-using Uno.Effects;
 using Uno.Factories;
 
 namespace Uno

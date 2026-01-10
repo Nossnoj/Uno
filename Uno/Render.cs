@@ -16,7 +16,7 @@ namespace Uno
             int i = 1;
             foreach (var card in hand)
             {
-                if(card.color == UnoColor.None && (card.Symbol == "Wild" || card.Symbol == "Wild+4"))
+                if(card.Color == UnoColor.None && (card.Symbol == "Wild" || card.Symbol == "Wild+4"))
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write($"{i}: ");
@@ -26,7 +26,7 @@ namespace Uno
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write($"{i}: ");
-                    RenderColor(card.color);
+                    RenderColor(card.Color);
                     Console.Write($"{card}, ");
                 }
                 i++;

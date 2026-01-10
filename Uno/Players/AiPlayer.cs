@@ -75,8 +75,8 @@ namespace Uno.Players
                 // sedan hade vi ökat en integer för varje kort per färg, sist hade vi tagit den integern med högst siffra och tilldelat state.currentColor den färgen som var kopplad till integern.
                 // Detta hade inte bara varit längre men även svårare att läsa. 
                 var colorChoice = Hand.Cards
-                .Where(c => c.color != UnoColor.None)
-                .GroupBy(c => c.color)
+                .Where(c => c.Color != UnoColor.None)
+                .GroupBy(c => c.Color)
                 .OrderByDescending(g => g.Count())
                 .Select(g => g.Key)
                 .FirstOrDefault();

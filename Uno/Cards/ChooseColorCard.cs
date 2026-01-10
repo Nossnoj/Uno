@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Uno.Effects;
 
 namespace Uno.Cards
 {
-    internal class ChooseColorCard : UnoCard<ChooseColorCard, ChooseColorEffect>
+    internal class ChooseColorCard : UnoCard
     {
         public ChooseColorCard()
-            : base(UnoColor.None, "Wild", new ChooseColorEffect()) { }
-        public ChooseColorCard(UnoColor color)
-            : base(color, "Wild", new ChooseColorEffect()) { }
+            : base(UnoColor.None, "Wild") { }
 
-        public void AddEffect(GameState state)
+        public ChooseColorCard(UnoColor color)
+            : base(color, "Wild") { }
+
+        public override void Play(GameState state)
         {
             GameRender renderGame = new GameRender();
             if (state.ColorChosen)

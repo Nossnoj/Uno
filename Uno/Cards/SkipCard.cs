@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Uno.Effects;
 
 namespace Uno.Cards
 {
-    internal class SkipCard : UnoCard<SkipCard, SkipEffect>
+    internal class SkipCard : UnoCard
     {
         public SkipCard(UnoColor color)
-            : base(color, "Skip", new SkipEffect()) { }
+            : base(color, "Skip") { }
 
-        public void AddEffect(GameState state)
+        public override void Play(GameState state)
         {
+            base.Play(state);
             state.SkipNextPlayer = true;
         }
     }

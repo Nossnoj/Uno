@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Uno.Effects;
 using Uno.Upgrades;
 
 namespace Uno.Cards
@@ -15,8 +14,7 @@ namespace Uno.Cards
     //3: Vi gör det för att det ska bli möjligt att skapa nya kort och effekter oberoende av varandra.
     internal abstract class UnoCard
     {
-        protected UnoColor Color { get; }
-        public UnoColor color => Color;
+        public UnoColor Color { get; }
         public string Symbol { get; }
 
         public IUpgrade upgrade;
@@ -37,7 +35,13 @@ namespace Uno.Cards
             return this.Color == other.Color || this.Symbol == other.Symbol;
         }
 
-        public abstract void Play(GameState state);
+        public virtual void Play(GameState state)
+        {
+            if(Color != UnoColor.None)
+            {
+                state.CurrentColor = Color;
+            }
+        }
 
         public override string ToString()
             => $"{Symbol}";

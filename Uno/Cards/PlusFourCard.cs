@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Uno.Effects;
 
 namespace Uno.Cards
 {
-    internal class PlusFourCard : UnoCard<PlusFourCard, DrawFourEffect>
+    internal class PlusFourCard : UnoCard
     {
         public PlusFourCard()
-            : base(UnoColor.None, "Wild+4", new DrawFourEffect()) { }
+            : base(UnoColor.None, "Wild+4") { }
+
         public PlusFourCard(UnoColor color)
-            : base(color, "Wild+4", new DrawFourEffect()) { }
+            : base(color, "Wild+4") { }
 
 
-        public void AddEffect(GameState state)
+        public override void Play(GameState state)
         {
             GameRender renderGame = new GameRender();
             state.CardsToDraw += 4;

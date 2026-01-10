@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Uno.Effects;
 
 namespace Uno.Cards
 {
-    internal class PlusTwoCard : UnoCard<PlusTwoCard, DrawTwoEffect>
+    internal class PlusTwoCard : UnoCard
     {
         public PlusTwoCard(UnoColor color)
-            : base(color, "+2", new DrawTwoEffect()) { }
+            : base(color, "+2") { }
 
 
-        public void AddEffect(GameState state)
+        public override void Play(GameState state)
         {
+            base.Play(state);
             state.CardsToDraw += 2;
         }
     }

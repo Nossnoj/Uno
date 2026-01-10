@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Uno.Cards;
-using Uno.Effects;
 using Uno.Players;
 
 namespace Uno
@@ -85,7 +84,7 @@ namespace Uno
             Console.SetCursorPosition(centerX - 7, Console.WindowHeight / 2-11);
             Console.Write("Top Card:");
             Console.SetCursorPosition(centerX - 3, Console.WindowHeight / 2-10);
-            if (topCard.color == UnoColor.None)
+            if (topCard.Color == UnoColor.None)
             {
                 UnoColor color = state.CurrentColor;
                 render.RenderColor(color);
@@ -93,7 +92,7 @@ namespace Uno
             else
             {
                 Console.ForegroundColor = ConsoleColor.White;
-                render.RenderColor(topCard.color);
+                render.RenderColor(topCard.Color);
             }
             Console.Write($"{topCard}");
             Console.ForegroundColor = ConsoleColor.White;

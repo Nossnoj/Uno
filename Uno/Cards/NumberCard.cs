@@ -3,23 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Uno.Effects;
 
 namespace Uno.Cards
 {
-    internal class NumberCard : UnoCard<NumberCard, NoEffect>
+    internal class NumberCard : UnoCard
     {
         public int Number { get; }
         public NumberCard(UnoColor color, string number)
-            : base(color, number, new NoEffect())
+            : base(color, number)
         {
             Number = int.Parse(number);
         }
 
 
-        public void AddEffect(GameState state)
+        public override void Play(GameState state)
         {
-
+            //behövs ens?
         }
     }
 }
