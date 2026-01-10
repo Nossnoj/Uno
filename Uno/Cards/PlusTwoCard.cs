@@ -12,9 +12,10 @@ namespace Uno.Cards
         public PlusTwoCard(UnoColor color)
             : base(color, "+2", new DrawTwoEffect()) { }
 
-        public override bool CanPlayOn(UnoCard other)
+
+        public void AddEffect(GameState state)
         {
-            return other.color == this.color || other is PlusTwoCard;
+            state.CardsToDraw += 2;
         }
     }
 }

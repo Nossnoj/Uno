@@ -12,10 +12,10 @@ namespace Uno.Cards
         public ReverseCard(UnoColor color)
             : base(color, "Reverse", new ReverseEffect()) { }
 
-        public override bool CanPlayOn(UnoCard other) 
+
+        public void AddEffect(GameState state)
         {
-            if(other is SkipCard) return false;
-            return this.color == other.color || this.Symbol == other.Symbol;
+            state.ReverseDirection = !state.ReverseDirection;
         }
     }
 }

@@ -12,9 +12,9 @@ namespace Uno.Cards
         public SkipCard(UnoColor color)
             : base(color, "Skip", new SkipEffect()) { }
 
-        public override bool CanPlayOn(UnoCard other) //kan spelas på alla nummerkort oavsett färg
+        public void AddEffect(GameState state)
         {
-            return other is NumberCard || other.color == this.color;
+            state.SkipNextPlayer = true;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uno.Effects;
+using Uno.Upgrades;
 
 namespace Uno.Cards
 {
@@ -18,13 +19,15 @@ namespace Uno.Cards
         public UnoColor color => Color;
         public string Symbol { get; }
 
+        public IUpgrade upgrade;
+
         protected UnoCard(UnoColor color, string symbol)
         {
             Color = color;
             Symbol = symbol;
         }
 
-        public virtual bool CanPlayOn(UnoCard other)
+        public bool CanPlayOn(UnoCard other)
         {
             if(Color == UnoColor.None) 
             {
