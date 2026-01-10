@@ -12,7 +12,7 @@ namespace Uno.Players
 {
     internal abstract class Player
     {
-        public PlayerHand Hand { get; }
+        public PlayerHand Hand { get; set; } //ändrade till set också
         public string Name { get; }
         public Deck Deck { get; }
         protected IStrategy strategy { get; }

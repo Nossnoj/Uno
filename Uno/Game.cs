@@ -42,6 +42,7 @@ namespace Uno
                 Player AIPlayer = AIPlayerFactory.createPlayer(aiName, deck, state);
                 playerList.Add(AIPlayer);
             }
+            state.Players = playerList;
         }
         public void StartGame()
         {
@@ -54,6 +55,7 @@ namespace Uno
             deck.discard.Add(topCard);
             topCard.Play(state);
             Console.ForegroundColor = ConsoleColor.White;
+            state.Players = playerList; //?
             Turns();
         }
 

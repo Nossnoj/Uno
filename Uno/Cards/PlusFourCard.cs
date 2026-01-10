@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Uno.Upgrades;
 
 namespace Uno.Cards
 {
     internal class PlusFourCard : UnoCard
     {
-        public PlusFourCard()
-            : base(UnoColor.None, "Wild+4") { }
+        public PlusFourCard(IUpgrade upgrade)
+            : base(UnoColor.None, "Wild+4", upgrade) { }
 
-        public PlusFourCard(UnoColor color)
-            : base(color, "Wild+4") { }
+        public PlusFourCard(UnoColor color, IUpgrade upgrade)
+            : base(color, "Wild+4", upgrade) { }
 
 
         public override void Play(GameState state)

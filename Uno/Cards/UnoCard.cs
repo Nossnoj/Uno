@@ -17,12 +17,13 @@ namespace Uno.Cards
         public UnoColor Color { get; }
         public string Symbol { get; }
 
-        public IUpgrade upgrade;
+        public IUpgrade Upgrade;
 
-        protected UnoCard(UnoColor color, string symbol)
+        protected UnoCard(UnoColor color, string symbol, IUpgrade upgrade)
         {
             Color = color;
             Symbol = symbol;
+            Upgrade = upgrade;
         }
 
         public bool CanPlayOn(UnoCard other)
@@ -41,6 +42,8 @@ namespace Uno.Cards
             {
                 state.CurrentColor = Color;
             }
+             
+            Upgrade.AddUpgrade(state);
         }
 
         public override string ToString()

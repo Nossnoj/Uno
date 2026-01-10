@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uno.Cards;
+using Uno.Players;
 
 namespace Uno
 {
@@ -14,6 +15,7 @@ namespace Uno
         public bool ReverseDirection { get; set; }
         public int CardsToDraw { get; set; }
         public bool ColorChosen { get; set; }
+        public List<Player> Players { get; set; } = new();
 
         public void ResetSkipEffect()
         {
