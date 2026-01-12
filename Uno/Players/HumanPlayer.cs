@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Uno.Cards;
 using Uno.Players;
+using Uno.Upgrades;
 
 namespace Uno.Players
 {
@@ -26,9 +27,9 @@ namespace Uno.Players
             GameRender renderGame = new GameRender();
 
             if (topCard.Symbol == "Wild+4")
-                tempTopCard = new PlusFourCard(state.CurrentColor);
+                tempTopCard = new PlusFourCard(state.CurrentColor, new NoUpgrade());
             else if (topCard.Symbol == "Wild")
-                tempTopCard = new ChooseColorCard(state.CurrentColor);
+                tempTopCard = new ChooseColorCard(state.CurrentColor, new NoUpgrade());
 
             if (state.CardsToDraw > 0)
             {

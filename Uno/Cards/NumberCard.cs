@@ -18,7 +18,7 @@ namespace Uno.Cards
 
         public override void Play(GameState state)
         {
-            //behövs ens?
+            base.Play(state);
         }
     }
 }

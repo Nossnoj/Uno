@@ -21,6 +21,8 @@ namespace Uno
 
         public void AddCard(UnoCard card) => cards.Add(card);
         public void RemoveCard(UnoCard card) => cards.Remove(card);
+
+        public void Clear() => cards.Clear();
         public IEnumerator<UnoCard> GetEnumerator()
         {
             return cards.GetEnumerator();
