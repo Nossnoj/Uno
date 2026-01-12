@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uno.Cards;
+using Uno.Upgrades;
 
 namespace Uno
 {
@@ -28,22 +29,22 @@ namespace Uno
                 foreach(var symbol in numberSymbols)
                 {
                     for(int i = 0; i < 2; i++)
-                        cards.Add(new NumberCard(color, symbol));
+                        cards.Add(new NumberCard(color, symbol, new NoUpgrade()));
                     
                 } 
-                cards.Add(new NumberCard(color, "0"));
+                cards.Add(new NumberCard(color, "0", new Swap()));
                 for (int i = 0; i < 2; i++)
                 {
-                    cards.Add(new SkipCard(color));
-                    cards.Add(new ReverseCard(color));
-                    cards.Add(new PlusTwoCard(color));
+                    cards.Add(new SkipCard(color, new Donate()));
+                    cards.Add(new ReverseCard(color, new Donate()));
+                    cards.Add(new PlusTwoCard(color, new Donate()));
                 }
                 
             }
             for (int i = 0; i < 4; i++)
             {
-                cards.Add(new ChooseColorCard());
-                cards.Add(new PlusFourCard());
+                cards.Add(new ChooseColorCard(new NoUpgrade()));
+                cards.Add(new PlusFourCard(new NoUpgrade()));
             }
             Shuffle(cards);
         }

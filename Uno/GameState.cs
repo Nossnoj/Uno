@@ -15,7 +15,8 @@ namespace Uno
         public bool ReverseDirection { get; set; }
         public int CardsToDraw { get; set; }
         public bool ColorChosen { get; set; }
-        public List<Player> Players { get; set; } = new();
+        public List<Player> Players { get; set; }
+        public Player CurrentPlayer { get; set; }
 
         public void ResetSkipEffect()
         {

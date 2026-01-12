@@ -77,6 +77,7 @@ namespace Uno
                     continue;
                 }
                 topCard = chosenCard;
+                state.CurrentPlayer = currentPlayer;
                 topCard.Play(state);
                 GameWin(currentPlayer);
                 Thread.Sleep(2000);

@@ -3,51 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Uno.Players;
-
 namespace Uno.Upgrades
 {
     internal class Donate : IUpgrade
     {
-        public void AddUpgrade(GameState state, Player owner)
+        public void AddUpgrade(GameState state)
         {
-            var otherPlayers = state.Players
-                .Where(p => p != owner)
-                .ToList();
+            var player = state.CurrentPlayer;
 
-            Console.WriteLine("Choose a player to donate to:");
-            for (int i = 0; i < otherPlayers.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}: {otherPlayers[i].Name}");
-            }
+            Console.WriteLine("Choose card index to donate:");
+            int cardIndex = int.Parse(Console.ReadLine()) - 1;
 
-            if (!int.TryParse(Console.ReadLine(), out int playerChoice) ||
-                playerChoice < 1 || playerChoice > otherPlayers.Count)
-            {
-                Console.WriteLine("Invalid player choice.");
+            if (cardIndex < 0 || cardIndex >= player.Hand.Cards.Count)
                 return;
-            }
 
-            Player targetPlayer = otherPlayers[playerChoice - 1];
+            var card = player.Hand.Cards[cardIndex];
 
-            Console.WriteLine("Choose a card to donate:");
-            for (int i = 0; i < owner.Hand.Cards.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}: {owner.Hand.Cards[i]}");
-            }
+            Console.WriteLine("Choose player index:");
+            for (int i = 0; i < state.Players.Count; i++)
+                Console.WriteLine($"{i}: {state.Players[i].Name}");
 
-            if (!int.TryParse(Console.ReadLine(), out int cardChoice) ||
-                cardChoice < 1 || cardChoice > owner.Hand.Cards.Count)
-            {
-                Console.WriteLine("Invalid card choice.");
+            int targetIndex = int.Parse(Console.ReadLine());
+
+            if (targetIndex < 0 || state.Players[targetIndex] == player)
                 return;
-            }
 
-            var card = owner.Hand.Cards[cardChoice - 1];
-            owner.Hand.RemoveCard(card);
-            targetPlayer.Hand.AddCard(card);
-
-            Console.WriteLine($"{owner.Name} donated {card} to {targetPlayer.Name}");
+            player.Hand.RemoveCard(card);
+            state.Players[targetIndex].Hand.AddCard(card);
         }
     }
 }
