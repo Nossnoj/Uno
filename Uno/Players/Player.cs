@@ -1,29 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.CompilerServices;
-using Uno.Cards;
+﻿using Uno.Cards;
 using Uno.Players;
 
-namespace Uno.Players
+namespace Uno
 {
     internal abstract class Player
     {
         public PlayerHand Hand { get; set; } //ändrade till set också
-        public string Name { get; }
+        public string Name { get; set; }
         public Deck Deck { get; }
-        protected IStrategy strategy { get; }
         public bool HasCalledUno { get; set; }
         public GameState state;
         protected int drawCount = 0;
+        public IStrategy strategy;
 
-        public Player(string name, IStrategy strategy, Deck deck, GameState state)
+        public Player(string name, Deck deck, GameState state)
         {
             Name = name;
-            this.strategy = strategy;
             Hand = new PlayerHand();
             this.Deck = deck;
             this.state = state;

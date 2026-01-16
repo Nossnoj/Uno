@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Uno.Cards;
-using Uno.Factories;
+﻿using Uno.Cards;
 using Uno.Players;
+using Uno.Upgrades;
 
 namespace Uno
 {
@@ -21,25 +14,19 @@ namespace Uno
         private int direction = 1;
         public Render render = new Render();
         public GameRender gameRender = new GameRender();
-        IPlayerFactory humanPlayerFactory;
-        IPlayerFactory AIPlayerFactory;
-        public Game(IPlayerFactory humanPlayerFactory, IPlayerFactory AIPlayerFactory)
+        public Game()
         {
-            this.humanPlayerFactory = humanPlayerFactory;
-            this.AIPlayerFactory = AIPlayerFactory;
             deck = new Deck();
             createPlayers();
-            StartGame();
-
         }
-        public void createPlayers()
+        private void createPlayers()
         {
-            Player humanPlayer = humanPlayerFactory.createPlayer("Player", deck, state);
+            Player humanPlayer = new HumanPlayer("player", deck, state);
             playerList.Add(humanPlayer);
             for (int i = 0; i < 3; i++)
             {
                 string aiName = $"Player {i + 1}";
-                Player AIPlayer = AIPlayerFactory.createPlayer(aiName, deck, state);
+                Player AIPlayer = new AiPlayer(aiName, deck, state);
                 playerList.Add(AIPlayer);
             }
             state.Players = playerList;
@@ -51,15 +38,17 @@ namespace Uno
             {
                 topCard = deck.drawCard();
             }
-            while (!numbers.Contains(topCard.Symbol));
+            while (!numbers.Contains(topCard.Symbol) && topCard.Upgrade != new NoUpgrade());
             deck.discard.Add(topCard);
+            var currentPlayer = playerList[currentPlayerIndex];
+            state.CurrentPlayer = currentPlayer;
             topCard.Play(state);
             Console.ForegroundColor = ConsoleColor.White;
             state.Players = playerList; //?
             Turns();
         }
 
-        public void Turns()
+        private void Turns()
         {
             while (true)
             {
@@ -85,7 +74,7 @@ namespace Uno
             }
         }
 
-        public void NextPlayer()
+        private void NextPlayer()
         {
             if (state.ReverseDirection)
                 direction *= -1;
@@ -104,7 +93,7 @@ namespace Uno
 
             playerList[currentPlayerIndex].ResetDrawCount();
         }
-        public void GameWin(Player player)
+        private void GameWin(Player player)
         {
             var hand = player.Hand;
             var name = player.Name;

@@ -16,7 +16,11 @@ namespace Uno.Players
 {
     internal class HumanPlayer : Player
     {
-        public HumanPlayer(string name, IStrategy strategy, Deck deck, GameState state) : base(name, strategy, deck, state) { }
+        public HumanPlayer(string name, Deck deck, GameState state) : base(name, deck, state) 
+        {
+            Console.WriteLine("Write your name!");
+            base.Name = Console.ReadLine();
+        }
         public override UnoCard playCard(PlayerHand hand, UnoCard topCard)
         {
             var state = base.state;
