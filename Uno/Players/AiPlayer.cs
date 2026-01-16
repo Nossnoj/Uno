@@ -15,7 +15,21 @@ namespace Uno.Players
     internal class AiPlayer : Player 
     {
         GameRender renderGame = new GameRender();
-        public AiPlayer(string name, IStrategy strategy, Deck deck, GameState state) : base(name, strategy, deck, state) { }
+        public IStrategy strategy;
+        public AiPlayer(string name, Deck deck, GameState state) : base(name, deck, state) 
+        {
+            Random rand = new Random();
+            if (rand.Next(0, 2) == 0)
+            {
+                this.strategy = new AggressiveStrategy();
+                base.Name += " Aggressive";
+            }
+            else
+            {
+                this.strategy = new NormalStrategy();
+                base.Name += " Normal";
+            }
+        }
         public override UnoCard playCard(PlayerHand hand, UnoCard topCard)
         {
             var tempTopCard = topCard;
