@@ -17,7 +17,7 @@ namespace Uno
 
         private void populateDeck()
         {
-            UpgradeFactory upgradeFactory = new CrazyUpgradeFactory(); //MÅSTE INJICERAS!!! Vi måste också göra så att man kan välja/random vilken typ av fabrik det är!
+            IUpgradeFactory upgradeFactory = new CrazyUpgradeFactory(); //MÅSTE INJICERAS!!! Vi måste också göra så att man kan välja/random vilken typ av fabrik det är!
 
             IUpgrade upgrade = upgradeFactory.CreateUpgrade();
             IUpgrade[] upgradeArray = new IUpgrade[108];

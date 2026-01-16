@@ -3,10 +3,10 @@ using Uno.Upgrades;
 
 namespace Uno.UpgradeFactories
 {
-    internal class CrazyUpgradeFactory : UpgradeFactory
+    internal class CrazyUpgradeFactory : IUpgradeFactory
     {
         private static readonly Random random = new Random();
-        public override IUpgrade CreateUpgrade()
+        public IUpgrade CreateUpgrade()
         {
             int rng = random.Next(0, 108);
             switch (rng)

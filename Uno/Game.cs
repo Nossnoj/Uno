@@ -1,6 +1,7 @@
 ﻿using Uno.Cards;
 using Uno.Players;
 using Uno.Upgrades;
+using Uno.UpgradeFactories;
 
 namespace Uno
 {
@@ -16,20 +17,25 @@ namespace Uno
         public GameRender gameRender = new GameRender();
         public Game()
         {
+            Console.WriteLine("Welcome to Uno! Choose a gamestyle");
+            Console.ReadLine();
+            //Switchsats för olika gamestyles här i framtiden (injicera i Deck)
+            IUpgradeFactory upgradeFactory;
             deck = new Deck();
             createPlayers();
         }
         private void createPlayers()
         {
             Player humanPlayer = new HumanPlayer("player", deck, state);
-            playerList.Add(humanPlayer);
+            state.Players.Add(humanPlayer);
+            //playerList.Add(humanPlayer);
             for (int i = 0; i < 3; i++)
             {
                 string aiName = $"Player {i + 1}";
                 Player AIPlayer = new AiPlayer(aiName, deck, state);
-                playerList.Add(AIPlayer);
+                state.Players.Add(AIPlayer);
             }
-            state.Players = playerList;
+            //state.Players = playerList;
         }
         public void StartGame()
         {
@@ -40,11 +46,11 @@ namespace Uno
             }
             while (!numbers.Contains(topCard.Symbol) && topCard.Upgrade != new NoUpgrade());
             deck.discard.Add(topCard);
-            var currentPlayer = playerList[currentPlayerIndex];
+            var currentPlayer = state.Players[currentPlayerIndex];
             state.CurrentPlayer = currentPlayer;
             topCard.Play(state);
             Console.ForegroundColor = ConsoleColor.White;
-            state.Players = playerList; //?
+            //state.Players = playerList; //? //
             Turns();
         }
 
@@ -55,7 +61,7 @@ namespace Uno
                 UnoColor color = state.CurrentColor;
                 gameRender.RenderHands(playerList);
                 gameRender.RenderTopCard(topCard, state);
-                var currentPlayer = playerList[currentPlayerIndex];
+                var currentPlayer = state.Players[currentPlayerIndex];
                 string s = $"{currentPlayer.Name}'s turn!";
                 gameRender.RenderComment(s, 0);
                 UnoCard? chosenCard = currentPlayer.playCard(currentPlayer.Hand, topCard);
@@ -81,17 +87,17 @@ namespace Uno
 
             if (state.SkipNextPlayer)
             {
-                currentPlayerIndex = (currentPlayerIndex + 2 * direction + playerList.Count) % playerList.Count;
+                currentPlayerIndex = (currentPlayerIndex + 2 * direction + state.Players.Count) % state.Players.Count;
             }
             else
             {
-                currentPlayerIndex = (currentPlayerIndex + direction + playerList.Count) % playerList.Count;
+                currentPlayerIndex = (currentPlayerIndex + direction + state.Players.Count) % state.Players.Count;
             }
 
             state.ReverseDirection = false;
             state.SkipNextPlayer = false;
 
-            playerList[currentPlayerIndex].ResetDrawCount();
+            state.Players[currentPlayerIndex].ResetDrawCount();
         }
         private void GameWin(Player player)
         {

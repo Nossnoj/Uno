@@ -12,7 +12,7 @@ namespace Uno
 {
     internal class GameRender
     {
-        string s;
+        string comment;
         public void RenderHands(List<Player> playerList)
         {
             Console.Clear();
@@ -73,8 +73,8 @@ namespace Uno
             
             Console.SetCursorPosition(centerX - cardCount / 2 - 20, handY);
             render.RenderHand(hand);
-            if(s != null)
-                Console.SetCursorPosition(Math.Max(0, (Console.WindowWidth-s.Length) / 2), Console.WindowHeight - 6);
+            if(comment != null)
+                Console.SetCursorPosition(Math.Max(0, (Console.WindowWidth-comment.Length) / 2), Console.WindowHeight - 6);
 
         }
         public void RenderTopCard(UnoCard topCard, GameState state)
@@ -97,17 +97,17 @@ namespace Uno
             Console.Write($"{topCard}");
             Console.ForegroundColor = ConsoleColor.White;
         }
-        public void RenderComment(string s, int i)
+        public void RenderComment(string comment, int i)
         {
-            this.s = s;
+            this.comment = comment;
             int commentRow = Console.WindowHeight - 5; 
-            int posX = Math.Max(0, (Console.WindowWidth - s.Length) / 2);
+            int posX = Math.Max(0, (Console.WindowWidth - comment.Length) / 2);
 
             Console.SetCursorPosition(0, commentRow-7);
             Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");
             Console.SetCursorPosition(posX, commentRow - 2);
 
-            Console.Write(s);
+            Console.Write(comment);
         }
 
     }
