@@ -32,11 +32,11 @@ namespace Uno
                         cards.Add(new NumberCard(color, symbol, new NoUpgrade()));
                     
                 } 
-                cards.Add(new NumberCard(color, "0", new Swap()));
+                cards.Add(new NumberCard(color, "0", new Donate()));
                 for (int i = 0; i < 2; i++)
                 {
-                    cards.Add(new SkipCard(color, new Swap()));
-                    cards.Add(new ReverseCard(color, new Swap()));
+                    cards.Add(new SkipCard(color, new Donate()));
+                    cards.Add(new ReverseCard(color, new Donate()));
                     cards.Add(new PlusTwoCard(color, new Donate()));
                 }
                 

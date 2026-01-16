@@ -11,6 +11,24 @@ namespace Uno.Upgrades
         {
             var player = state.CurrentPlayer;
 
+            if (state.UpgradeChosen)
+            {
+                int aiCardIndex = state.ChosenCardIndex;
+                int aiTargetIndex = state.ChosenPlayerIndex;
+
+                if(aiCardIndex < 0 || aiCardIndex >= player.Hand.Cards.Count)
+                {
+                    return;
+                }
+
+                var aiCard = player.Hand.Cards[aiCardIndex];
+                player.Hand.RemoveCard(aiCard);
+                state.Players[aiTargetIndex].Hand.AddCard(aiCard);
+
+                state.UpgradeChosen = false;
+                return;
+            }
+            
             Console.WriteLine("Choose card index to donate:");
             int cardIndex = int.Parse(Console.ReadLine()) - 1;
 

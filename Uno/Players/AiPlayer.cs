@@ -33,6 +33,7 @@ namespace Uno.Players
                 if (stackable != null)
                 {
                     chooseColor(stackable);
+                    chooseUpgrade(stackable); 
                     playlogic(hand, stackable);
                 }
                 renderGame.RenderComment($"{Name} draws {state.CardsToDraw} cards.", 0);
@@ -46,6 +47,7 @@ namespace Uno.Players
                 if (chosenCard != null)
                 {
                     chooseColor(chosenCard);
+                    chooseUpgrade(chosenCard); 
                     playlogic(hand, chosenCard);
 
                     if (hand.Cards.Count == 1 && !HasCalledUno)
@@ -87,6 +89,33 @@ namespace Uno.Players
                 state.ColorChosen = true;
             }
         }
+
+        private void chooseUpgrade(UnoCard card)
+        {
+            if(card.Upgrade is Swap || card.Upgrade is Donate)
+            {
+                Random rand = new Random();
+
+                var possibleTargets = state.Players
+                    .Select((p, i) => new { p, i })
+                    .Where(x => x.p != this)
+                    .ToList();
+
+                if (possibleTargets.Count == 0)
+                    return;
+
+                var chosenPlayer = possibleTargets[rand.Next(possibleTargets.Count)];
+                state.ChosenPlayerIndex = chosenPlayer.i;
+
+                if(card.Upgrade is Donate && Hand.Cards.Count > 0)
+                {
+                    state.ChosenCardIndex = rand.Next(Hand.Cards.Count);
+                }
+
+                state.UpgradeChosen = true;
+            }
+        }
+
         private void playlogic(PlayerHand hand, UnoCard card)
         {
             Render render = new Render();

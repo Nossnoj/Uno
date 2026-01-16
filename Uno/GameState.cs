@@ -18,6 +18,10 @@ namespace Uno
         public List<Player> Players { get; set; }
         public Player CurrentPlayer { get; set; }
 
+        public bool UpgradeChosen { get; set; }
+        public int ChosenPlayerIndex { get; set; }  
+        public int ChosenCardIndex { get; set; }
+
         public void ResetSkipEffect()
         {
             SkipNextPlayer = false;

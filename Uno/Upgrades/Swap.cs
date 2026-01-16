@@ -13,6 +13,27 @@ namespace Uno.Upgrades
         {
             var currentPlayer = state.CurrentPlayer;
 
+            if (state.UpgradeChosen)
+            {
+                int aiTargetIndex = state.ChosenPlayerIndex;
+                var aiTargetPlayer = state.Players[aiTargetIndex];
+
+                var aiCurrentCards = currentPlayer.Hand.Cards.ToList();
+                var aiTargetCards = aiTargetPlayer.Hand.Cards.ToList();
+
+                currentPlayer.Hand.Clear();
+                aiTargetPlayer.Hand.Clear();
+
+                foreach(var c in aiTargetCards)
+                    currentPlayer.Hand.AddCard(c);
+
+                foreach (var c in aiCurrentCards)
+                    aiTargetPlayer.Hand.AddCard(c);
+
+                state.UpgradeChosen = false;
+                return;
+            }
+
             Console.WriteLine("Choose player to swap with:");
             for (int i = 0; i < state.Players.Count; i++)
             {
@@ -25,7 +46,7 @@ namespace Uno.Upgrades
             int targetIndex;
             while (!int.TryParse(Console.ReadLine(), out targetIndex)
                    || targetIndex < 0
-                   || targetIndex >= state.Players.Count
+                   || targetIndex >= state.Players.Count 
                    || state.Players[targetIndex] == currentPlayer)
             {
                 Console.WriteLine("Invalid choice, try again.");
