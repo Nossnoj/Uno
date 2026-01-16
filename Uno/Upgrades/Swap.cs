@@ -37,9 +37,9 @@ namespace Uno.Upgrades
             var currentCards = currentPlayer.Hand.Cards.ToList();
             var targetCards = targetPlayer.Hand.Cards.ToList();
 
-
             currentPlayer.Hand.Clear();
             targetPlayer.Hand.Clear();
+           
 
             foreach (var c in targetCards)
                 currentPlayer.Hand.AddCard(c);

@@ -1,5 +1,6 @@
 ﻿using Uno.Cards;
 using Uno.Players;
+using Uno.Upgrades;
 
 namespace Uno
 {
@@ -37,8 +38,10 @@ namespace Uno
             {
                 topCard = deck.drawCard();
             }
-            while (!numbers.Contains(topCard.Symbol));
+            while (!numbers.Contains(topCard.Symbol) && topCard.Upgrade != new NoUpgrade());
             deck.discard.Add(topCard);
+            var currentPlayer = playerList[currentPlayerIndex];
+            state.CurrentPlayer = currentPlayer;
             topCard.Play(state);
             Console.ForegroundColor = ConsoleColor.White;
             state.Players = playerList; //?

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Uno.Cards;
+﻿using Uno.Cards;
+using Uno.UpgradeFactories;
 using Uno.Upgrades;
 
 namespace Uno
@@ -21,6 +17,12 @@ namespace Uno
 
         private void populateDeck()
         {
+            UpgradeFactory upgradeFactory = new CrazyUpgradeFactory(); //MÅSTE INJICERAS!!! Vi måste också göra så att man kan välja/random vilken typ av fabrik det är!
+
+            IUpgrade upgrade = upgradeFactory.CreateUpgrade();
+            IUpgrade[] upgradeArray = new IUpgrade[108];
+            for (int i = 0; i < 108; i++)
+                upgradeArray[i] = upgradeFactory.CreateUpgrade();
             string[] numberSymbols = { "1", "2", "3", "4", "5", "6", "7", "8", "9"};
             UnoColor[] colors = { UnoColor.Red, UnoColor.Blue, UnoColor.Green, UnoColor.Yellow };
             foreach(var color in colors)
@@ -29,22 +31,28 @@ namespace Uno
                 foreach(var symbol in numberSymbols)
                 {
                     for(int i = 0; i < 2; i++)
-                        cards.Add(new NumberCard(color, symbol, new NoUpgrade()));
+                        cards.Add(new NumberCard(color, symbol, upgrade));
                     
                 } 
-                cards.Add(new NumberCard(color, "0", new Swap()));
+                cards.Add(new NumberCard(color, "0", upgrade));
                 for (int i = 0; i < 2; i++)
                 {
-                    cards.Add(new SkipCard(color, new Swap()));
-                    cards.Add(new ReverseCard(color, new Swap()));
-                    cards.Add(new PlusTwoCard(color, new Donate()));
+                    cards.Add(new SkipCard(color, upgrade));
+                    cards.Add(new ReverseCard(color, upgrade));
+                    cards.Add(new PlusTwoCard(color, upgrade));
                 }
                 
             }
             for (int i = 0; i < 4; i++)
             {
-                cards.Add(new ChooseColorCard(new NoUpgrade()));
-                cards.Add(new PlusFourCard(new NoUpgrade()));
+                cards.Add(new ChooseColorCard(upgrade));
+                cards.Add(new PlusFourCard(upgrade));
+            }
+            int x = 0;
+            foreach (var card in cards)
+            {
+                card.Upgrade = upgradeArray[x];
+                x++;
             }
             Shuffle(cards);
         }
