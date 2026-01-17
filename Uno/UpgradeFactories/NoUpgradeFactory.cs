@@ -2,9 +2,9 @@
 
 namespace Uno.UpgradeFactories
 {
-    internal class NoUpgradeFactory : UpgradeFactory
+    internal class NoUpgradeFactory : IUpgradeFactory
     {
-        public override IUpgrade CreateUpgrade()
+        public IUpgrade CreateUpgrade()
         {
             return new NoUpgrade();
         }

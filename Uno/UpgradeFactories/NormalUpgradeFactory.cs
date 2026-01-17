@@ -2,13 +2,13 @@
 
 namespace Uno.UpgradeFactories
 {
-    internal class NormalUpgradeFactory : UpgradeFactory
+    internal class NormalUpgradeFactory : IUpgradeFactory
     {
         private static readonly Random random = new Random();
-        public override IUpgrade CreateUpgrade()
+        public IUpgrade CreateUpgrade()
         {
             int rng = random.Next(0, 108);
-            switch(rng)
+            switch (rng)
             {
                 case <= 8:
                     return new Donate();

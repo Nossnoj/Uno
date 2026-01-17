@@ -8,8 +8,10 @@ namespace Uno
     {
         private List<UnoCard> cards;
         public List<UnoCard> discard;
-        public Deck()
+        public IUpgradeFactory Factory { get; set; }
+        public Deck(IUpgradeFactory factory)
         {
+            Factory = factory;
             cards = new List<UnoCard>();
             discard = new List<UnoCard>();
             populateDeck();
@@ -17,12 +19,10 @@ namespace Uno
 
         private void populateDeck()
         {
-            UpgradeFactory upgradeFactory = new CrazyUpgradeFactory(); //MÅSTE INJICERAS!!! Vi måste också göra så att man kan välja/random vilken typ av fabrik det är!
-
-            IUpgrade upgrade = upgradeFactory.CreateUpgrade();
+            IUpgrade upgrade = Factory.CreateUpgrade();
             IUpgrade[] upgradeArray = new IUpgrade[108];
             for (int i = 0; i < 108; i++)
-                upgradeArray[i] = upgradeFactory.CreateUpgrade();
+                upgradeArray[i] = Factory.CreateUpgrade();
             string[] numberSymbols = { "1", "2", "3", "4", "5", "6", "7", "8", "9"};
             UnoColor[] colors = { UnoColor.Red, UnoColor.Blue, UnoColor.Green, UnoColor.Yellow };
             foreach(var color in colors)
