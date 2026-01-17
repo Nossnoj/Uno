@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Uno.Cards;
 using Uno.Players;
+using Uno.Renderer;
 
 namespace Uno
 {
     internal class GameRender
     {
         string comment;
+        Render render = new Render();
         public void RenderHands(List<Player> playerList)
         {
             Console.Clear();
@@ -23,7 +25,7 @@ namespace Uno
             {
                 var player = playerList[p];
                 int cardCount = player.Hand.Cards.Count;
-                Render render = new Render();
+                //Render render = new Render();
                 string cards = string.Join(" ", Enumerable.Repeat("■", cardCount));
 
                 switch (p)
@@ -64,7 +66,6 @@ namespace Uno
         public void RenderHand(PlayerHand hand)
         {
             int cardCount = hand.Cards.Count;
-            Render render = new Render();
             int centerX = Console.WindowWidth / 2;
             int handY = Console.WindowHeight - 3;
             Console.SetCursorPosition(0, handY - 7);
@@ -79,12 +80,12 @@ namespace Uno
         }
         public void RenderTopCard(UnoCard topCard, GameState state)
         {
-            Render render = new Render();
             int centerX = Console.WindowWidth / 2;
             Console.SetCursorPosition(centerX - 7, Console.WindowHeight / 2-11);
             Console.Write("Top Card:");
             Console.SetCursorPosition(centerX - 3, Console.WindowHeight / 2-10);
-            if (topCard.Color == UnoColor.None)
+            render.RenderItem<UnoCard>(new UnoCardRenderer(), topCard);
+            /*if (topCard.Color == UnoColor.None)
             {
                 UnoColor color = state.CurrentColor;
                 render.RenderColor(color);
@@ -95,7 +96,7 @@ namespace Uno
                 render.RenderColor(topCard.Color);
             }
             Console.Write($"{topCard}");
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.White;*/
         }
         public void RenderComment(string comment, int i)
         {
@@ -107,7 +108,7 @@ namespace Uno
             Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");
             Console.SetCursorPosition(posX, commentRow - 2);
 
-            Console.Write(comment);
+            render.RenderItem<string>(new StringRenderer(), comment);
         }
 
     }

@@ -7,7 +7,7 @@ namespace Uno
 {
     internal class Game
     {
-        private GameState state = new GameState();
+        private GameState state;// = new GameState();
         private Deck deck;
         private List<Player> playerList = new();
         private UnoCard? topCard;
@@ -17,8 +17,9 @@ namespace Uno
         public GameRender gameRender = new GameRender();
         public Game()
         {
-            Console.WriteLine("Welcome to Uno! Choose a gamestyle");
-            Console.ReadLine();
+            this.state = new GameState();
+            //Console.WriteLine("Welcome to Uno! Choose a gamestyle");
+            //Console.ReadLine();
             //Switchsats för olika gamestyles här i framtiden (injicera i Deck)
             IUpgradeFactory upgradeFactory;
             deck = new Deck();
@@ -59,7 +60,7 @@ namespace Uno
             while (true)
             {
                 UnoColor color = state.CurrentColor;
-                gameRender.RenderHands(playerList);
+                gameRender.RenderHands(state.Players);
                 gameRender.RenderTopCard(topCard, state);
                 var currentPlayer = state.Players[currentPlayerIndex];
                 string s = $"{currentPlayer.Name}'s turn!";

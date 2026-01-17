@@ -11,6 +11,7 @@ namespace Uno.Upgrades
     {
         public void AddUpgrade(GameState state)
         {
+            GameRender gameRender = new GameRender();
             var currentPlayer = state.CurrentPlayer;
 
             if (state.UpgradeChosen)
@@ -34,11 +35,12 @@ namespace Uno.Upgrades
                 return;
             }
 
-            Console.WriteLine("Choose player to swap with:");
+            gameRender.RenderComment("Choose player to swap with:", 0);
             for (int i = 0; i < state.Players.Count; i++)
             {
                 if (state.Players[i] != currentPlayer)
                 {
+                    //Denna kommer att cleara skärmen om vi gör rendercomment i loopen, här måste vi komma på en lösning
                     Console.WriteLine($"{i}: {state.Players[i].Name} ({state.Players[i].Hand.Cards.Count} cards)");
                 }
             }
@@ -49,7 +51,7 @@ namespace Uno.Upgrades
                    || targetIndex >= state.Players.Count 
                    || state.Players[targetIndex] == currentPlayer)
             {
-                Console.WriteLine("Invalid choice, try again.");
+                gameRender.RenderComment("Invalid choice, try again.", 0);
             }
 
             var targetPlayer = state.Players[targetIndex];
@@ -68,7 +70,7 @@ namespace Uno.Upgrades
             foreach (var c in currentCards)
                 targetPlayer.Hand.AddCard(c);
 
-            Console.WriteLine($"{currentPlayer.Name} swapped hands with {targetPlayer.Name}!");
+            gameRender.RenderComment($"{currentPlayer.Name} swapped hands with {targetPlayer.Name}!", 0);
         }
     }
 }

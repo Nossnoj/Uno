@@ -1,4 +1,4 @@
-﻿namespace Uno
+﻿namespace Uno.Renderer
 {
     internal interface IRenderer<T>
     {
