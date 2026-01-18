@@ -10,7 +10,7 @@ namespace Uno.Cards
     //KRAV 3:
     //1: Bridge Pattern
     //2: Vi använder Bridge Pattern genom att dela upp korten i två hierarkier.
-    //   Den ena är bara själva korten och dess effekt, den andra sidan är olika uppgraderingar.
+    //   Den ena är bara själva korten och dess effekt, den andra sidan är olika uppgraderingar. UnoCard har sedan då en referens till uppgraderingen.
     //3: Vi gör det för att det ska bli möjligt att skapa både vanliga kort och kort med uppgraderingar.
     //   Eftersom att varje subtyp från båda hierarkierna går att kombinera med varandra så innebär det att alla sorters kort kan få alla sorters uppgraderingar.
     //   Och det är det som är poängen!

@@ -39,7 +39,7 @@ namespace Uno
                     return new NormalUpgradeFactory();
 
                 case "3":
-                    return new CrazyUpgradeFactory();
+                    return new ChooseUpgradeFactory();
 
                 default:
                     Console.WriteLine("Invalid choice, defaulting to Normal");

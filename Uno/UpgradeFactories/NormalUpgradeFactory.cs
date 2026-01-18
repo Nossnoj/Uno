@@ -17,7 +17,6 @@ namespace Uno.UpgradeFactories
                 default:
                     return new NoUpgrade();
             }
-
         }
     }
 }

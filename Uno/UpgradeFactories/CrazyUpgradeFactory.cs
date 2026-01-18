@@ -3,29 +3,29 @@ using Uno.Upgrades;
 
 namespace Uno.UpgradeFactories
 {
-    internal class CrazyUpgradeFactory : IUpgradeFactory
+    internal class ChooseUpgradeFactory : IUpgradeFactory
     {
         private static readonly Random random = new Random();
-        private int donateAmount;
-        private int swapAmount;
+        private int donateOdds;
+        private int swapOdds;
 
-        public CrazyUpgradeFactory()
+        public ChooseUpgradeFactory()
         {
-            Console.WriteLine("Choose how many Donate upgrades you want:");
-            donateAmount = ValidateChoice();
+            Console.WriteLine("Choose the odds of a card having a Donate upgrade:");
+            donateOdds = ValidateChoice();
 
-            Console.WriteLine("Choose how many Swap upgrades you want:");
-            swapAmount = ValidateChoice();
+            Console.WriteLine("Choose the odds of a card having a Swap upgrade:");
+            swapOdds = ValidateChoice();
         }
 
         public IUpgrade CreateUpgrade()
         {
-            int rng = random.Next(0, 108);
+            int rng = random.Next(0, 100);
 
-            if(rng <= donateAmount)
+            if(rng < donateOdds)
                 return new Donate();
 
-            else if(rng <= swapAmount)
+            if(rng < donateOdds + swapOdds)
                 return new Swap();
 
             return new NoUpgrade();
