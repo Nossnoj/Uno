@@ -1,10 +1,10 @@
 Detta är en konsolversion av kortspelet UNO. I denna versionen så spelas spelet med totalt fyra spelare (1 mänsklig och 3 datorstyrda spelare).
 
-Det som skiljer sig från vanliga UNO är att denna version inkluderar tre olika svårighetsgrader samt olika uppgraderingar.
-Svårighetsgraderna som erbjuds är Easy, Medium och Hard. 
-På Easy så används inte uppgraderingarna, på Medium så används uppgraderingar men sparsamt, på Hard så kan spelaren själv styra oddsen för olika uppgraderingar.
+Det som skiljer sig från vanliga UNO är att denna version inkluderar tre olika spellägen samt olika uppgraderingar.
+De spellägen som erbjuds är inga uppgraderingar, måttlig mängd uppgraderingar och valfri mängd uppgraderingar.
+På inga uppgraderingar så används inte uppgraderingarna, på normal/måttliga uppgraderingar så används uppgraderingar men sparsamt, på valfri mängd så kan spelaren själv styra oddsen för olika uppgraderingar.
 
-Uppgraderingarna som erbjuds är Swap och Donate. 
+Uppgraderingarna som erbjuds är Swap, Donate samt NoUpgrade (vanligt kort). 
 Om ditt kort är markerat med Swap så innebär det att när du spelar det kortet så får du byta hela din korthand med en annans spelare.
 Om ditt kort är markerat med Donate så innebär det att när du spelar det kortet så får du ge bort ett valfritt kort i din hand till en annan spelare som du själv väljer.
 
