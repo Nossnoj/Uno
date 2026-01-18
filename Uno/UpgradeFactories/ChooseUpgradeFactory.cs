@@ -12,11 +12,11 @@ namespace Uno.UpgradeFactories
 
         public ChooseUpgradeFactory()
         {
-            renderGame.RenderPrompt("Choose the odds of a card having a Donate upgrade:");
+            renderGame.RenderPrompt("Choose the odds of a card having a Donate upgrade in percentages (only numbers):");
             donateOdds = ValidateChoice();
             Console.Clear();
 
-            renderGame.RenderPrompt("Choose the odds of a card having a Swap upgrade:");
+            renderGame.RenderPrompt("Choose the odds of a card having a Swap upgrade in percentages (only numbers):");
             swapOdds = ValidateChoice();
             Console.Clear();
         }
