@@ -5,7 +5,7 @@ namespace Uno.Renderer
     {
         public void Render(string item)
         {
-            Console.WriteLine(item);
+            Console.Write(item);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Uno.UpgradeFactories
             {
                 return new Donate();
             }
-            else if (rng <= 76)
+            else if (rng <= 36)
             {
                 return new Swap();
             }

@@ -35,15 +35,16 @@ namespace Uno.Upgrades
                 return;
             }
 
-            gameRender.RenderComment("Choose player to swap with:", 0);
+            string choices = string.Empty;
             for (int i = 0; i < state.Players.Count; i++)
             {
                 if (state.Players[i] != currentPlayer)
                 {
-                    //Denna kommer att cleara skärmen om vi gör rendercomment i loopen, här måste vi komma på en lösning
-                    Console.WriteLine($"{i}: {state.Players[i].Name} ({state.Players[i].Hand.Cards.Count} cards)");
+                    choices += $"{i}: {state.Players[i].Name} ({state.Players[i].Hand.Cards.Count} cards)\n";
+                    //Problemet är att när vi gör en ny rad så skrivs det inte i mitten utan på sidan!!! fixat tror jag :)
                 }
             }
+            gameRender.RenderUpgrade("Choose player to swap with:", choices);
 
             int targetIndex;
             while (!int.TryParse(Console.ReadLine(), out targetIndex)

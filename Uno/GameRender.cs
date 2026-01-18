@@ -34,7 +34,7 @@ namespace Uno
                         Console.SetCursorPosition(centerX - cards.Length / 2 - 2, 2);
                         Console.Write(cards);
                         Console.SetCursorPosition(centerX - player.Name.Length / 2 - 1, 3);
-                        Console.Write(player.Name);
+                        Console.Write(player.Name); //använd generiska metoden
                         break;
 
                     case 1: 
@@ -54,7 +54,7 @@ namespace Uno
                             Console.Write("■");
                         }
                         Console.SetCursorPosition(Console.WindowWidth - 3 - player.Name.Length, 18 + cardCount + 1);
-                        Console.Write(player.Name);
+                        Console.Write(player.Name); // här också
                         break;
 
                     case 0: 
@@ -72,7 +72,7 @@ namespace Uno
             Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");
             Console.SetCursorPosition(centerX, handY - 2);
             
-            Console.SetCursorPosition(centerX - cardCount / 2 - 20, handY);
+            Console.SetCursorPosition(centerX - cardCount / 2 - 25, handY);
             render.RenderHand(hand);
             if(comment != null)
                 Console.SetCursorPosition(Math.Max(0, (Console.WindowWidth-comment.Length) / 2), Console.WindowHeight - 6);
@@ -85,18 +85,7 @@ namespace Uno
             Console.Write("Top Card:");
             Console.SetCursorPosition(centerX - 3, Console.WindowHeight / 2-10);
             render.RenderItem<UnoCard>(new UnoCardRenderer(), topCard);
-            /*if (topCard.Color == UnoColor.None)
-            {
-                UnoColor color = state.CurrentColor;
-                render.RenderColor(color);
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.White;
-                render.RenderColor(topCard.Color);
-            }
-            Console.Write($"{topCard}");
-            Console.ForegroundColor = ConsoleColor.White;*/
+
         }
         public void RenderComment(string comment, int i)
         {
@@ -109,6 +98,26 @@ namespace Uno
             Console.SetCursorPosition(posX, commentRow - 2);
 
             render.RenderItem<string>(new StringRenderer(), comment);
+        }
+
+        public void RenderUpgrade(string upgrade, string upgradeChoice)
+        {
+
+            int startRow = Console.WindowHeight-20;
+
+            var lines = upgradeChoice
+                .Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            int posX = Math.Max(0, (Console.WindowWidth - upgrade.Length) / 2);
+            Console.SetCursorPosition(posX, startRow -1);
+            render.RenderItem<string>(new StringRenderer(), upgrade);
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string line = lines[i];
+                posX = Math.Max(0, (Console.WindowWidth - line.Length) / 2);
+                Console.SetCursorPosition(posX, startRow + i);
+                render.RenderItem<string>(new StringRenderer(), line);
+            }
         }
 
     }

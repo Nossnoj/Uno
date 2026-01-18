@@ -25,21 +25,21 @@ namespace Uno
                 if(card.Color == UnoColor.None && (card.Symbol == "Wild" || card.Symbol == "Wild+4"))
                 {
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write($"{i}: ");
-                    RenderRainbow(card.Symbol);
+                    Console.Write($" {i}: ");
+                    RenderItem<UnoCard>(new UnoCardRenderer(), card);
+                    //RenderRainbow(card.Symbol);
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write($"{i}: ");
-                    RenderColor(card.Color);
-                    Console.Write($"{card}, ");
+                    Console.Write($" {i}: ");
+                    RenderItem<UnoCard>(new UnoCardRenderer(), card); ;
                 }
                 i++;
             }
             Console.ForegroundColor = ConsoleColor.White;
         }
-        public void RenderColor(UnoColor color)
+        /*public void RenderColor(UnoColor color)
         {
             switch (color)
             {
@@ -79,6 +79,6 @@ namespace Uno
             Console.Write(" ");
 
             Console.ForegroundColor = ConsoleColor.White;
-        }
+        }*/
     }
 }

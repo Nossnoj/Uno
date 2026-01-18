@@ -11,7 +11,7 @@ namespace Uno.Renderer
             string output = card.Symbol;
             //test
             switch (card.Upgrade)
-                {
+            {
                 case Swap:
                     output += " Swap";
                     break;
@@ -26,21 +26,44 @@ namespace Uno.Renderer
             {
                 case UnoColor.Red:
                     Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(output);
                     break;
                 case UnoColor.Blue:
                     Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write(output);
                     break;
                 case UnoColor.Green:
                     Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(output);
                     break;
                 case UnoColor.Yellow:
                     Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(output);
                     break;
                 default:
-                    Console.ResetColor();
+                    RenderRainbow(card.Symbol);
                     break;
             }
-            Console.Write(output);
+            //Console.Write(output);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        private void RenderRainbow(string text)
+        {
+            ConsoleColor[] rainbowColors = new[]
+            {
+                ConsoleColor.Red,
+                ConsoleColor.Yellow,
+                ConsoleColor.Green,
+                ConsoleColor.Blue
+            };
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                Console.ForegroundColor = rainbowColors[i % rainbowColors.Length];
+                Console.Write(text[i]);
+            }
+            Console.Write(" ");
+
             Console.ForegroundColor = ConsoleColor.White;
         }
     }

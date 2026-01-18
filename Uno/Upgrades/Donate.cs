@@ -9,6 +9,7 @@ namespace Uno.Upgrades
     {
         public void AddUpgrade(GameState state)
         {
+            GameRender gameRender = new GameRender();
             var player = state.CurrentPlayer;
 
             if (state.UpgradeChosen)
@@ -29,17 +30,20 @@ namespace Uno.Upgrades
                 return;
             }
             
-            Console.WriteLine("Choose card index to donate:");
+            gameRender.RenderComment("Choose card index to donate:", 0);
             int cardIndex = int.Parse(Console.ReadLine()) - 1;
+            string choices = string.Empty;
 
             if (cardIndex < 0 || cardIndex >= player.Hand.Cards.Count)
                 return;
 
             var card = player.Hand.Cards[cardIndex];
 
-            Console.WriteLine("Choose player index:");
             for (int i = 0; i < state.Players.Count; i++)
-                Console.WriteLine($"{i}: {state.Players[i].Name}");
+                choices += $"{i}: {state.Players[i].Name}\n";
+
+            gameRender.RenderUpgrade("Choose player index:", choices);
+
 
             int targetIndex = int.Parse(Console.ReadLine());
 
