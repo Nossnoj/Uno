@@ -3,28 +3,44 @@ using Uno.Upgrades;
 
 namespace Uno.UpgradeFactories
 {
-    internal class CrazyUpgradeFactory : IUpgradeFactory
+    internal class ChooseUpgradeFactory : IUpgradeFactory
     {
         private static readonly Random random = new Random();
+        private int donateOdds;
+        private int swapOdds;
+
+        public ChooseUpgradeFactory()
+        {
+            Console.WriteLine("Choose the odds of a card having a Donate upgrade:");
+            donateOdds = ValidateChoice();
+
+            Console.WriteLine("Choose the odds of a card having a Swap upgrade:");
+            swapOdds = ValidateChoice();
+        }
+
         public IUpgrade CreateUpgrade()
         {
-            /*Console.WriteLine("Choose how many upgrades you want");
-            Console.WriteLine("Swap");
-            int swapaAmount = int.Parse(Console.ReadLine());
-            Console.WriteLine("Donate");
-            int donateAmount = int.Parse(Console.ReadLine());*/
-            int rng = random.Next(0, 108);
-            if(rng <= 18)
-            {
+            int rng = random.Next(0, 100);
+
+            if(rng < donateOdds)
                 return new Donate();
-            }
-            else if (rng <= 36)
-            {
+
+            if(rng < donateOdds + swapOdds)
                 return new Swap();
-            }
-            else
+
+            return new NoUpgrade();
+        }
+
+        private int ValidateChoice()
+        {
+            while (true)
             {
-                return new NoUpgrade();
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out int choice) && choice >= 0)
+                    return choice;
+
+                Console.WriteLine("Enter a valid number!");
             }
         }
     }

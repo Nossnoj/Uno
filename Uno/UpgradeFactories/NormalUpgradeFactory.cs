@@ -8,7 +8,7 @@ namespace Uno.UpgradeFactories
         public IUpgrade CreateUpgrade()
         {
             int rng = random.Next(0, 108);
-            switch(rng)
+            switch (rng)
             {
                 case <= 8:
                     return new Donate();
@@ -17,7 +17,6 @@ namespace Uno.UpgradeFactories
                 default:
                     return new NoUpgrade();
             }
-
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Uno.Cards;
 using Uno.Players;
+using Uno.UpgradeFactories;
 using Uno.Upgrades;
 using Uno.UpgradeFactories;
 
@@ -25,6 +26,32 @@ namespace Uno
             deck = new Deck();
             createPlayers();
         }
+
+        private IUpgradeFactory ChooseDifficulty()
+        {
+            Console.WriteLine("Choose a difficulty by typing 1, 2 or 3: ");
+            Console.WriteLine("1: Easy");
+            Console.WriteLine("2: Medium");
+            Console.WriteLine("3: Hard");
+            string input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "1":
+                    return new NoUpgradeFactory();
+
+                case "2":
+                    return new NormalUpgradeFactory();
+
+                case "3":
+                    return new ChooseUpgradeFactory();
+
+                default:
+                    Console.WriteLine("Invalid choice, defaulting to Normal");
+                    return new NormalUpgradeFactory();
+            }
+        }
+
         private void createPlayers()
         {
             Player humanPlayer = new HumanPlayer("player", deck, state);
