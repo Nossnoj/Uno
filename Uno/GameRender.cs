@@ -34,7 +34,8 @@ namespace Uno
                         Console.SetCursorPosition(centerX - cards.Length / 2 - 2, 2);
                         Console.Write(cards);
                         Console.SetCursorPosition(centerX - player.Name.Length / 2 - 1, 3);
-                        Console.Write(player.Name); //använd generiska metoden
+                        render.RenderItem<Player>(new PlayerRenderer(), player);
+                        //Console.Write(player.Name); //använd generiska metoden
                         break;
 
                     case 1: 
@@ -44,7 +45,7 @@ namespace Uno
                             Console.Write("■");
                         }
                         Console.SetCursorPosition(2, 18 + cardCount + 1);
-                        Console.Write(player.Name);
+                        render.RenderItem<Player>(new PlayerRenderer(), player);
                         break;
 
                     case 3: 
@@ -54,7 +55,7 @@ namespace Uno
                             Console.Write("■");
                         }
                         Console.SetCursorPosition(Console.WindowWidth - 3 - player.Name.Length, 18 + cardCount + 1);
-                        Console.Write(player.Name); // här också
+                        render.RenderItem<Player>(new PlayerRenderer(), player);
                         break;
 
                     case 0: 
