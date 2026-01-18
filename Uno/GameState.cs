@@ -15,7 +15,7 @@ namespace Uno
         public bool ReverseDirection { get; set; }
         public int CardsToDraw { get; set; }
         public bool ColorChosen { get; set; }
-        public List<Player> Players = new List<Player>(); //{ get; set; }
+        public List<Player> Players = new List<Player>(); 
         public Player CurrentPlayer { get; set; }
 
         public bool UpgradeChosen { get; set; }

@@ -27,7 +27,6 @@ namespace Uno
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write($" {i}: ");
                     RenderItem<UnoCard>(new UnoCardRenderer(), card);
-                    //RenderRainbow(card.Symbol);
                 }
                 else
                 {
@@ -39,46 +38,6 @@ namespace Uno
             }
             Console.ForegroundColor = ConsoleColor.White;
         }
-        /*public void RenderColor(UnoColor color)
-        {
-            switch (color)
-            {
-                case UnoColor.Red:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    break;
-                case UnoColor.Blue:
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    break;
-                case UnoColor.Green:
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    break;
-                case UnoColor.Yellow:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                default:
-                    Console.ResetColor();
-                    break;
-            }
-        }
-
-        private void RenderRainbow(string text)
-        {
-            ConsoleColor[] rainbowColors = new[]
-            {
-                ConsoleColor.Red,
-                ConsoleColor.Yellow,
-                ConsoleColor.Green,
-                ConsoleColor.Blue
-            };
-
-            for (int i = 0; i < text.Length; i++)
-            {
-                Console.ForegroundColor = rainbowColors[i % rainbowColors.Length];
-                Console.Write(text[i]);
-            }
-            Console.Write(" ");
-
-            Console.ForegroundColor = ConsoleColor.White;
-        }*/
+        
     }
 }

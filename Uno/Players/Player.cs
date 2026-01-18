@@ -5,7 +5,7 @@ namespace Uno
 {
     internal abstract class Player
     {
-        public PlayerHand Hand { get; set; } //ändrade till set också
+        public PlayerHand Hand { get; set; }
         public string Name { get; set; }
         public Deck Deck { get; }
         public bool HasCalledUno { get; set; }

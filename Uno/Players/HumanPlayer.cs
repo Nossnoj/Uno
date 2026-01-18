@@ -10,16 +10,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Uno.Cards;
 using Uno.Players;
+using Uno.Renderer;
 using Uno.Upgrades;
 
 namespace Uno.Players
 {
     internal class HumanPlayer : Player
     {
+        GameRender renderGame = new GameRender();
+
         public HumanPlayer(string name, Deck deck, GameState state) : base(name, deck, state) 
         {
-            Console.WriteLine("Write your name!");
+
+            string prompt = "Write your name!";
+            renderGame.RenderPrompt(prompt);
             base.Name = Console.ReadLine();
+            Console.Clear();
+
         }
         public override UnoCard playCard(PlayerHand hand, UnoCard topCard)
         {
@@ -28,7 +35,6 @@ namespace Uno.Players
             var deck = base.Deck;
             Render render = new Render();
             var tempTopCard = topCard;
-            GameRender renderGame = new GameRender();
 
             if (topCard.Symbol == "Wild+4")
                 tempTopCard = new PlusFourCard(state.CurrentColor, new NoUpgrade());

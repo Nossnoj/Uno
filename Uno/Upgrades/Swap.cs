@@ -41,7 +41,6 @@ namespace Uno.Upgrades
                 if (state.Players[i] != currentPlayer)
                 {
                     choices += $"{i}: {state.Players[i].Name} ({state.Players[i].Hand.Cards.Count} cards)\n";
-                    //Problemet är att när vi gör en ny rad så skrivs det inte i mitten utan på sidan!!! fixat tror jag :)
                 }
             }
             gameRender.RenderUpgrade("Choose player to swap with:", choices);

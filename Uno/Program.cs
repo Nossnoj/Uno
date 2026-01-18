@@ -10,7 +10,6 @@ namespace Uno
         static void Main(string[] args)
         {
             var game = new Game();
-            //var state = new GameState();
             game.StartGame();
         }
     }
