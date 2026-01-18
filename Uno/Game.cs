@@ -71,7 +71,7 @@ namespace Uno
             {
                 topCard = deck.drawCard();
             }
-            while (!numbers.Contains(topCard.Symbol) && topCard.Upgrade != new NoUpgrade());
+            while (!numbers.Contains(topCard.Symbol) || topCard.Upgrade is not NoUpgrade);
             deck.discard.Add(topCard);
             var currentPlayer = state.Players[currentPlayerIndex];
             state.CurrentPlayer = currentPlayer;

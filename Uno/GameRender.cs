@@ -86,7 +86,6 @@ namespace Uno
             Console.Write("Top Card:");
             Console.SetCursorPosition(centerX - 3, Console.WindowHeight / 2-10);
             render.RenderItem<UnoCard>(new UnoCardRenderer(), topCard);
-
         }
         public void RenderComment(string comment, int i)
         {
