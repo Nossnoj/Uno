@@ -6,16 +6,19 @@ namespace Uno.UpgradeFactories
     internal class ChooseUpgradeFactory : IUpgradeFactory
     {
         private static readonly Random random = new Random();
+        GameRender renderGame = new GameRender();
         private int donateOdds;
         private int swapOdds;
 
         public ChooseUpgradeFactory()
         {
-            Console.WriteLine("Choose the odds of a card having a Donate upgrade:");
+            renderGame.RenderPrompt("Choose the odds of a card having a Donate upgrade:");
             donateOdds = ValidateChoice();
+            Console.Clear();
 
-            Console.WriteLine("Choose the odds of a card having a Swap upgrade:");
+            renderGame.RenderPrompt("Choose the odds of a card having a Swap upgrade:");
             swapOdds = ValidateChoice();
+            Console.Clear();
         }
 
         public IUpgrade CreateUpgrade()

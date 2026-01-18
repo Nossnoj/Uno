@@ -2,13 +2,12 @@
 using Uno.Players;
 using Uno.UpgradeFactories;
 using Uno.Upgrades;
-using Uno.UpgradeFactories;
-
+using Uno.Renderer;
 namespace Uno
 {
     internal class Game
     {
-        private GameState state;// = new GameState();
+        private GameState state;
         private Deck deck;
         private List<Player> playerList = new();
         private UnoCard? topCard;
@@ -27,12 +26,15 @@ namespace Uno
 
         private IUpgradeFactory ChooseDifficulty()
         {
-            //byt alternativen och lägg rendera dom i rätt med motorn
-            Console.WriteLine("Choose a difficulty by typing 1, 2 or 3: ");
-            Console.WriteLine("1: Easy");
-            Console.WriteLine("2: Medium");
-            Console.WriteLine("3: Hard");
+            string prompt =
+            "Choose a gamemode by typing 1, 2 or 3:\n" +
+            "1: No upgrade mode\n" +
+            "2: Normal upgrade mode (ca 8 swap upgrades and 8 donate upgrades)\n" +
+            "3: Choose your own amount of upgrades\n";
+            gameRender.RenderPrompt(prompt);
             string input = Console.ReadLine();
+            Console.Clear();
+
 
             switch (input)
             {

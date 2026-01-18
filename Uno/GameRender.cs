@@ -25,7 +25,6 @@ namespace Uno
             {
                 var player = playerList[p];
                 int cardCount = player.Hand.Cards.Count;
-                //Render render = new Render();
                 string cards = string.Join(" ", Enumerable.Repeat("■", cardCount));
 
                 switch (p)
@@ -35,7 +34,6 @@ namespace Uno
                         Console.Write(cards);
                         Console.SetCursorPosition(centerX - player.Name.Length / 2 - 1, 3);
                         render.RenderItem<Player>(new PlayerRenderer(), player);
-                        //Console.Write(player.Name); //använd generiska metoden
                         break;
 
                     case 1: 
@@ -85,7 +83,24 @@ namespace Uno
             Console.SetCursorPosition(centerX - 7, Console.WindowHeight / 2-11);
             Console.Write("Top Card:");
             Console.SetCursorPosition(centerX - 3, Console.WindowHeight / 2-10);
-            render.RenderItem<UnoCard>(new UnoCardRenderer(), topCard);
+            if (topCard.Color == UnoColor.None)
+            {
+                var coloredWild = topCard;
+                if (topCard.Symbol == "Wild")
+                {
+                    coloredWild = new ChooseColorCard(state.CurrentColor, topCard.Upgrade);
+                }
+                else
+                {
+                    coloredWild = new PlusFourCard(state.CurrentColor, topCard.Upgrade);
+                }
+               render.RenderItem<UnoCard>(new UnoCardRenderer(), coloredWild);
+            }
+            else
+            {
+                render.RenderItem<UnoCard>(new UnoCardRenderer(), topCard);
+            }
+
         }
         public void RenderComment(string comment, int i)
         {
@@ -118,6 +133,24 @@ namespace Uno
                 Console.SetCursorPosition(posX, startRow + i);
                 render.RenderItem<string>(new StringRenderer(), line);
             }
+        }
+        public void RenderPrompt(string prompt)
+        {
+            int startRow = Console.WindowHeight - 20;
+
+            var lines = prompt
+                .Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            int posX = Math.Max(0, (Console.WindowWidth - prompt.Length) / 2);
+            Console.SetCursorPosition(posX, startRow - 1);
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string line = lines[i];
+                posX = Math.Max(0, (Console.WindowWidth - line.Length) / 2);
+                Console.SetCursorPosition(posX, startRow + i);
+                render.RenderItem<string>(new StringRenderer(), line);
+            }
+            Console.SetCursorPosition(Console.WindowWidth/2, startRow + lines.Length);
         }
 
     }

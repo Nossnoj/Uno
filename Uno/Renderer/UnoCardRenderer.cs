@@ -9,7 +9,6 @@ namespace Uno.Renderer
         public void Render(UnoCard card)
         {
             string output = card.Symbol;
-            //test
             switch (card.Upgrade)
             {
                 case Swap:
@@ -44,7 +43,6 @@ namespace Uno.Renderer
                     RenderRainbow(card.Symbol);
                     break;
             }
-            //Console.Write(output);
             Console.ForegroundColor = ConsoleColor.White;
         }
         private void RenderRainbow(string text)
