@@ -43,7 +43,7 @@ namespace Uno.UpgradeFactories
                 if (int.TryParse(input, out int choice) && choice >= 0)
                     return choice;
 
-                Console.WriteLine("Enter a valid number!");
+                renderGame.RenderComment("Enter a valid number!", 0);
             }
         }
     }
