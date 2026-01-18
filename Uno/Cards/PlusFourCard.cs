@@ -41,7 +41,9 @@ namespace Uno.Cards
                     break;
                 }
                 renderGame.RenderComment("Invalid color! Try again!", 0);
+
             }
+            Upgrade.AddUpgrade(state);
         }
     }
 }

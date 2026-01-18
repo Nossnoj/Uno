@@ -40,7 +40,7 @@ namespace Uno.Renderer
                     Console.Write(output);
                     break;
                 default:
-                    RenderRainbow(card.Symbol);
+                    RenderRainbow(output);
                     break;
             }
             Console.ForegroundColor = ConsoleColor.White;

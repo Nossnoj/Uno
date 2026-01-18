@@ -49,12 +49,12 @@ namespace Uno
                 cards.Add(new PlusFourCard(upgrade));
             }
             int x = 0;
+            Shuffle(cards);
             foreach (var card in cards)
             {
                 card.Upgrade = upgradeArray[x];
                 x++;
             }
-            Shuffle(cards);
         }
         public UnoCard drawCard()
         {

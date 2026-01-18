@@ -64,7 +64,8 @@ namespace Uno.Players
 
                         hand.RemoveCard(chosen);
                         deck.discard.Add(chosen);
-                        renderGame.RenderComment($"{Name} played {chosen}!", 0);
+                        renderGame.RenderComment($"{Name} played ", 0);
+                        render.RenderItem(new UnoCardRenderer(), chosen);
                         Console.ForegroundColor = ConsoleColor.White;
                         return chosen;
                     }
@@ -107,7 +108,8 @@ namespace Uno.Players
 
                 hand.RemoveCard(chosenCard);
                 deck.discard.Add(chosenCard);
-                renderGame.RenderComment($"{Name} played {chosenCard}!", 0);
+                renderGame.RenderComment($"{Name} played ", 0);
+                render.RenderItem(new UnoCardRenderer(), chosenCard);
                 Thread.Sleep(1000);
                 Console.ForegroundColor = ConsoleColor.White;
 

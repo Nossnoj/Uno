@@ -9,7 +9,6 @@ namespace Uno
     {
         private GameState state;
         private Deck deck;
-        private List<Player> playerList = new();
         private UnoCard? topCard;
         private int currentPlayerIndex = 0;
         private int direction = 1;
@@ -29,7 +28,7 @@ namespace Uno
             string prompt =
             "Choose a gamemode by typing 1, 2 or 3:\n" +
             "1: No upgrade mode\n" +
-            "2: Normal upgrade mode (ca 8 swap upgrades and 8 donate upgrades)\n" +
+            "2: Normal upgrade mode (9 swap upgrades and 9 donate upgrades)\n" +
             "3: Choose your own amount of upgrades\n";
             gameRender.RenderPrompt(prompt);
             string input = Console.ReadLine();
@@ -57,14 +56,12 @@ namespace Uno
         {
             Player humanPlayer = new HumanPlayer("player", deck, state);
             state.Players.Add(humanPlayer);
-            //playerList.Add(humanPlayer);
             for (int i = 0; i < 3; i++)
             {
                 string aiName = $"Player {i + 1}";
                 Player AIPlayer = new AiPlayer(aiName, deck, state);
                 state.Players.Add(AIPlayer);
             }
-            //state.Players = playerList;
         }
         public void StartGame()
         {
@@ -79,7 +76,6 @@ namespace Uno
             state.CurrentPlayer = currentPlayer;
             topCard.Play(state);
             Console.ForegroundColor = ConsoleColor.White;
-            //state.Players = playerList; //? //
             Turns();
         }
 
@@ -91,7 +87,7 @@ namespace Uno
                 gameRender.RenderHands(state.Players);
                 gameRender.RenderTopCard(topCard, state);
                 var currentPlayer = state.Players[currentPlayerIndex];
-                string s = $"{currentPlayer.Name}'s turn!";
+                string s = $"{currentPlayer.Name}'s turn! ";
                 gameRender.RenderComment(s, 0);
                 UnoCard? chosenCard = currentPlayer.playCard(currentPlayer.Hand, topCard);
                 if (chosenCard == null)

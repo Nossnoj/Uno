@@ -1,5 +1,6 @@
 ﻿using Uno.Cards;
 using Uno.Players;
+using Uno.Renderer;
 using Uno.Upgrades;
 
 namespace Uno.Players
@@ -127,7 +128,8 @@ namespace Uno.Players
             Render render = new Render();
             hand.RemoveCard(card);
             Deck.discard.Add(card);
-            renderGame.RenderComment($"{Name} played {card}!", 0);
+            renderGame.RenderComment($"{Name} played ", 0);
+            render.RenderItem(new UnoCardRenderer(), card);
             Thread.Sleep(3000);
         }
     }
