@@ -19,16 +19,15 @@ namespace Uno
         public Game()
         {
             this.state = new GameState();
-            //Console.WriteLine("Welcome to Uno! Choose a gamestyle");
-            //Console.ReadLine();
-            //Switchsats för olika gamestyles här i framtiden (injicera i Deck)
-            IUpgradeFactory upgradeFactory;
-            deck = new Deck();
+            
+            IUpgradeFactory factory = ChooseDifficulty();
+            deck = new Deck(factory);
             createPlayers();
         }
 
         private IUpgradeFactory ChooseDifficulty()
         {
+            //byt alternativen och lägg rendera dom i rätt med motorn
             Console.WriteLine("Choose a difficulty by typing 1, 2 or 3: ");
             Console.WriteLine("1: Easy");
             Console.WriteLine("2: Medium");
